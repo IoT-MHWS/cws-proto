@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package cws;
+
+message Hello {
+  string content = 1;
+}
