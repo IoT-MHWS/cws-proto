@@ -3,7 +3,7 @@ syntax = "proto3";
 package cws;
 
 import "general.proto";
-import "subject/subject_base.proto";
+import "subject/base.proto";
 
 message SubjectSensor {
   Subject base = 1;

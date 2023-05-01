@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cws;
 
-import "subject/subject_base.proto";
+import "subject/base.proto";
 
 enum InteractionStateType {
   INTERACTION_STATE_TYPE_UNSPECIFIED = 0;

@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package cws;
 
-import "subject/subject_base.proto";
-import "subject/subject_interactive.proto";
-import "subject/subject_plain.proto";
-import "subject/subject_sensor.proto";
+import "subject/base.proto";
+import "subject/interactive.proto";
+import "subject/plain.proto";
+import "subject/sensor.proto";
 
 message SubjectDerived {
   oneof derived {
