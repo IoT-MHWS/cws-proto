@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package cws;
+
+import "subject/subject_base.proto";
+
+message SubjectPlain {
+  Subject base = 1;
+  int32 id = 2;
+};

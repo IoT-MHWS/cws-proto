@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package cws;
+
+message Coordinates {
+  int32 x = 1;
+  int32 y = 2;
+}
+
+message Percentage {
+  double value = 1;
+};
+
+message Temperature {
+  double value = 1;
+};
+

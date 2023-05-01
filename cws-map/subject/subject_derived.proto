@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package cws;
+
+import "subject/subject_base.proto";
+import "subject/subject_interactive.proto";
+import "subject/subject_plain.proto";
+import "subject/subject_sensor.proto";
+
+message SubjectDerived {
+  oneof derived {
+    Subject base = 1;
+    SubjectInteractive interactive = 2;
+    SubjectPlain plain = 3;
+    SubjectSensorDerived sensor = 4;
+  };
+};

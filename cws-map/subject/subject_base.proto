@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package cws;
+
+import "general.proto";
+
+message Subject {
+  double weight = 1;
+
+  double heat_capacity = 10;
+  Percentage heat_transmission = 11;
+  Temperature temperature = 12;
+
+  Percentage light_transmission = 20;
+  Percentage humidity_transmission = 21;
+};
+

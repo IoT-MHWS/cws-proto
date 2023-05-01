@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package cws;
+
+import "general.proto";
+import "subject/subject_base.proto";
+
+message SubjectSensor {
+  Subject base = 1;
+};
+
+message SensorTemperature {
+  SubjectSensor base = 1;
+  Temperature temperature = 2;
+};
+
+message SubjectSensorDerived {
+  oneof derived {
+    SubjectSensor base = 1;
+    SensorTemperature temperature = 2;
+  }
+};
