@@ -8,7 +8,7 @@ import "subject/interactive.proto";
 import "subject/plain.proto";
 import "subject/sensor.proto";
 
-import "service/base.proto";
+import "service/general.proto";
 
 /* Request */
 message RequestCell {

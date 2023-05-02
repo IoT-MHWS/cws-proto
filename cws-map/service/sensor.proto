@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cws;
 
-import "service/base.proto";
+import "service/general.proto";
 
 service SensorService {
 
