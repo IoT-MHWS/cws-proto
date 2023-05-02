@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package cws;
+
+enum StatusType {
+  STATUS_TYPE_UNSPECIFIED = 0;
+  STATUS_TYPE_OK          = 1;
+  STATUS_TYPE_BAD_REQUEST = 2;
+}
+
+message Status {
+  string text = 1;
+  optional StatusType type = 2;
+}
+
+message Request {
+};
+
+message Response {
+  Status status = 1;
+};

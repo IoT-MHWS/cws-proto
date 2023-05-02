@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package cws;
+
+import "general.proto";
+import "layer/subject.proto";
+import "layer/temperature.proto";
+
+
+message Cell {
+  Coordinates coordinates = 1;
+  LayerSubject subject = 10;
+  LayerTemperature temperature = 11;
+};
+
+message Map {
+  Dimension dimension = 1;
+  repeated Cell cells = 2;
+}

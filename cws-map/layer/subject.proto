@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cws;
+
+import "layer/base.proto";
+import "subject/derived.proto";
+
+message LayerSubject {
+  Layer base = 1;
+  repeated SubjectDerived subjects = 2;
+};
