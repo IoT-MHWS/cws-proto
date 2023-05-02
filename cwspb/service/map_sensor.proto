@@ -4,6 +4,6 @@ package cws;
 
 import "cwspb/service/general.proto";
 
-service SimulationUpdateService {
+service MapSensorService {
 
 };

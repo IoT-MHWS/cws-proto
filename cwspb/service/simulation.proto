@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package cws;
+
+import "cwspb/general.proto";
+import "cwspb/service/general.proto";
+
+enum SimulationStatus {
+  SIMULATION_STATUS_UNSPECIFIED = 0;
+  SIMULATION_STATUS_RESTART = 1;
+  SIMULATION_STATUS_STOP = 2;
+};
+
+enum SimulationType {
+  SIMULATION_TYPE_UNSPECIFIED = 0;
+  SIMULATION_TYPE_LIMITED = 1;
+  SIMULATION_TYPE_INFINITE = 2;
+}
+
+/* Simulation Status */
+message RequestSimulationStatus {
+  Request base = 1;
+  SimulationStatus status = 2;
+};
+
+message ResponseSimulationStatus {
+  Response base = 1;
+  SimulationStatus status = 2;
+}
+
+/* Simulation State */
+message SimulationState {
+  SimulationStatus status = 1;
+  SimulationType type = 2;
+  Dimension map_dimension = 3;
+  int32 tick = 4;
+  int32 ticks_left = 5;
+};
+
+message RequestSimulationState {
+  Request base = 1;
+  SimulationState state = 2;
+};
+
+message ResponseSimulationState {
+  Request base = 1;
+  SimulationState state = 2;
+};
+
+service SimulationService {
+  rpc GetSimulationStatus(Request) returns (ResponseSimulationStatus);
+
+  rpc SetSimulationStatus(RequestSimulationStatus) returns (Response);
+
+  rpc GetSimulationState(Request) returns (ResponseSimulationState);
+
+  rpc SetSimulationState(RequestSimulationState) returns (Response);
+};

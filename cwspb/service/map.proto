@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package cws;
+
+import "cwspb/general.proto";
+import "cwspb/map.proto";
+import "cwspb/subject/interactive.proto";
+import "cwspb/subject/plain.proto";
+import "cwspb/subject/sensor.proto";
+
+import "cwspb/service/general.proto";
+
+message RequestCell {
+  Coordinates coordinates = 1;
+};
+
+message ResponseCell {
+  optional Status status = 1;
+  Cell cell = 10;
+}
+
+
+service MapService {
+  rpc GetCell(RequestCell) returns (ResponseCell);
+
+  rpc GetMap(Request) returns (stream ResponseCell);
+};
