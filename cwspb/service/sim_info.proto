@@ -2,13 +2,13 @@ syntax = "proto3";
 
 package cws;
 
-import "general.proto";
-import "map.proto";
-import "subject/interactive.proto";
-import "subject/plain.proto";
-import "subject/sensor.proto";
+import "cwspb/general.proto";
+import "cwspb/map.proto";
+import "cwspb/subject/interactive.proto";
+import "cwspb/subject/plain.proto";
+import "cwspb/subject/sensor.proto";
 
-import "service/general.proto";
+import "cwspb/service/general.proto";
 
 /* Request */
 message RequestCell {

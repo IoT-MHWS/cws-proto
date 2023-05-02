@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cws;
 
-import "subject/base.proto";
+import "cwspb/subject/base.proto";
 
 message SubjectPlain {
   Subject base = 1;

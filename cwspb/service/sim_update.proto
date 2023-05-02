@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cws;
 
-import "service/general.proto";
+import "cwspb/service/general.proto";
 
 service SimulationUpdateService {
 

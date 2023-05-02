@@ -2,7 +2,8 @@ syntax = "proto3";
 
 package cws;
 
-import "general.proto";
+import "cwspb/general.proto";
+
 
 message Subject {
   double weight = 1;

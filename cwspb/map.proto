@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package cws;
 
-import "general.proto";
-import "layer/subject.proto";
-import "layer/temperature.proto";
+import "cwspb/general.proto";
+import "cwspb/layer/subject.proto";
+import "cwspb/layer/temperature.proto";
 
 
 message Cell {

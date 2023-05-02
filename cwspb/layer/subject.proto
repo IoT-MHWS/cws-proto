@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package cws;
 
-import "layer/base.proto";
-import "subject/derived.proto";
+import "cwspb/layer/base.proto";
+import "cwspb/subject/derived.proto";
 
 message LayerSubject {
   Layer base = 1;

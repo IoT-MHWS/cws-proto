@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package cws;
 
-import "general.proto";
-import "subject/base.proto";
+import "cwspb/general.proto";
+import "cwspb/subject/base.proto";
 
 message SubjectSensor {
   Subject base = 1;

@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package cws;
 
-import "general.proto";
-import "layer/base.proto";
+import "cwspb/general.proto";
+import "cwspb/layer/base.proto";
 
 message LayerTemperature {
   Layer base = 1;
