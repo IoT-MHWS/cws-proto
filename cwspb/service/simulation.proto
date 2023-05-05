@@ -7,8 +7,8 @@ import "cwspb/service/general.proto";
 
 enum SimulationStatus {
   SIMULATION_STATUS_UNSPECIFIED = 0;
-  SIMULATION_STATUS_RESTART = 1;
-  SIMULATION_STATUS_STOP = 2;
+  SIMULATION_STATUS_RUNNING = 1;
+  SIMULATION_STATUS_STOPPED = 2;
 };
 
 enum SimulationType {
@@ -17,25 +17,15 @@ enum SimulationType {
   SIMULATION_TYPE_INFINITE = 2;
 }
 
-/* Simulation Status */
-message RequestSimulationStatus {
-  Request base = 1;
-  SimulationStatus status = 2;
-};
 
-message ResponseSimulationStatus {
-  Response base = 1;
-  SimulationStatus status = 2;
-}
-
-/* Simulation State */
 message SimulationState {
-  SimulationStatus status = 1;
-  SimulationType type = 2;
-  Dimension map_dimension = 3;
-  int32 tick = 4;
-  int32 ticks_left = 5;
+  optional SimulationStatus status = 1;
+  optional SimulationType type = 2;
+  optional double task_frequency = 3;
+  optional int32 current_tick = 4;
+  optional int32 last_tick = 5;
 };
+
 
 message RequestSimulationState {
   Request base = 1;
@@ -43,15 +33,12 @@ message RequestSimulationState {
 };
 
 message ResponseSimulationState {
-  Request base = 1;
+  Response base = 1;
   SimulationState state = 2;
 };
 
+
 service SimulationService {
-  rpc GetSimulationStatus(Request) returns (ResponseSimulationStatus);
-
-  rpc SetSimulationStatus(RequestSimulationStatus) returns (Response);
-
   rpc GetSimulationState(Request) returns (ResponseSimulationState);
 
   rpc SetSimulationState(RequestSimulationState) returns (Response);
