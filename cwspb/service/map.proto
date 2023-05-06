@@ -4,24 +4,64 @@ package cws;
 
 import "cwspb/general.proto";
 import "cwspb/map.proto";
-import "cwspb/subject/interactive.proto";
-import "cwspb/subject/plain.proto";
-import "cwspb/subject/sensor.proto";
-
 import "cwspb/service/general.proto";
+import "cwspb/subject/base.proto";
+import "cwspb/subject/derived.proto";
+
+message RequestDimension {
+  Dimension dimension = 1;
+}
+
+message ResponseDimension {
+  Response base = 1;
+  Dimension dimension = 2;
+}
 
 message RequestCell {
   Coordinates coordinates = 1;
 };
 
 message ResponseCell {
-  optional Status status = 1;
+  Response base = 1;
   Cell cell = 10;
+}
+
+enum SetSubjectType {
+  SET_SUBJECT_TYPE_UNSPECIFIED = 0;
+  SET_SUBJECT_TYPE_INSERT = 1;
+  SET_SUBJECT_TYPE_UPDATE = 2;
+  SET_SUBJECT_TYPE_DELETE = 3;
+}
+
+message RequestSetSubject {
+  SetSubjectType type = 1;
+  Coordinates coordinates = 10;
+  SubjectDerived subject = 11;
+}
+
+message RequestSelectSubject {
+  SubjectId id = 1;
+  SubjectType type = 2;
+  Coordinates coordinates = 3;
+};
+
+message ResponseSelectSubject {
+  Response base = 1;
+  SubjectDerived derived = 2;
+  Coordinates coordinates = 3;
 }
 
 
 service MapService {
+  rpc GetMapDimension(Request) returns (ResponseDimension);
+
+  rpc CreateMap(RequestDimension) returns (Response);
+
   rpc GetCell(RequestCell) returns (ResponseCell);
 
   rpc GetMap(Request) returns (stream ResponseCell);
+
+  rpc SetSubject(RequestSetSubject) returns (Response);
+
+  rpc GetSubject(RequestSelectSubject) returns (ResponseSelectSubject);
 };

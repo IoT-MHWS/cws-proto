@@ -4,6 +4,16 @@ package cws;
 
 import "cwspb/general.proto";
 
+enum SubjectType {
+  SUBJECT_TYPE_UNSPECIFIED = 0;
+  SUBJECT_TYPE_PLAIN = 1;
+  SUBJECT_TYPE_INTERACTIVE = 2;
+  SUBJECT_TYPE_SENSOR = 3;
+}
+
+message SubjectId {
+  int32 id = 3;
+};
 
 message Subject {
   double weight = 1;
@@ -14,5 +24,6 @@ message Subject {
 
   Percentage light_transmission = 20;
   Percentage humidity_transmission = 21;
-};
 
+  SubjectId id = 30;
+};

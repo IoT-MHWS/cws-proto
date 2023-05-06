@@ -6,5 +6,4 @@ import "cwspb/subject/base.proto";
 
 message SubjectPlain {
   Subject base = 1;
-  int32 id = 2;
 };

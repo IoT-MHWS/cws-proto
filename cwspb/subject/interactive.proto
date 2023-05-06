@@ -12,6 +12,5 @@ enum InteractionStateType {
 
 message SubjectInteractive {
   Subject base = 1;
-  int32 id = 2;
   InteractionStateType interaction_state_type = 3;
 };

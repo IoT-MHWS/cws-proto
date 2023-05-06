@@ -28,7 +28,6 @@ message SimulationState {
 
 
 message RequestSimulationState {
-  Request base = 1;
   SimulationState state = 2;
 };
 
