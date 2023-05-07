@@ -20,5 +20,6 @@ message ResponseSensorTemperature {
  * Communicates with existing subjects to get/set their state
  */
 service SubjectHubService {
-  rpc GetTemperature(Request) returns (ResponseSensorTemperature);
+  rpc GetTemperature(RequestSensorTemperature)
+    returns (ResponseSensorTemperature);
 };
