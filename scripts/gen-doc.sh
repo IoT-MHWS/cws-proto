@@ -2,6 +2,8 @@
 
 set -o nounset
 
+# protoc-gen-doc should be in $PATH
+
 PROTOS='cwspb/service/*'
 
 OUT_FILE=$1
