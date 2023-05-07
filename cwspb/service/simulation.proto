@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package cws;
 
-import "cwspb/general.proto";
 import "cwspb/service/general.proto";
 
 enum SimulationStatus {
