@@ -2,7 +2,9 @@ syntax = "proto3";
 
 package cws;
 
+import "cwspb/general.proto";
 import "cwspb/service/general.proto";
+import "cwspb/subject/base.proto";
 
 message RequestSensorTemperature {
   SubjectId id = 1;
@@ -18,5 +20,5 @@ message ResponseSensorTemperature {
  * Communicates with existing subjects to get/set their state
  */
 service SubjectHubService {
-  rpc GetTemperature(Request) returns 
+  rpc GetTemperature(Request) returns (ResponseSensorTemperature);
 };
