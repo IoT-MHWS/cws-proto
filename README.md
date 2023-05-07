@@ -3,12 +3,44 @@
 
 ## Table of Contents
 
+- [cwspb/general.proto](#cwspb_general-proto)
+    - [Coordinates](#cws-Coordinates)
+    - [Dimension](#cws-Dimension)
+    - [Percentage](#cws-Percentage)
+    - [Temperature](#cws-Temperature)
+  
+- [cwspb/layer/base.proto](#cwspb_layer_base-proto)
+    - [Layer](#cws-Layer)
+  
+- [cwspb/layer/temperature.proto](#cwspb_layer_temperature-proto)
+    - [LayerTemperature](#cws-LayerTemperature)
+  
+- [cwspb/layer/subject.proto](#cwspb_layer_subject-proto)
+    - [LayerSubject](#cws-LayerSubject)
+  
+- [cwspb/layer.proto](#cwspb_layer-proto)
 - [cwspb/service/general.proto](#cwspb_service_general-proto)
     - [Request](#cws-Request)
     - [Response](#cws-Response)
     - [Status](#cws-Status)
   
     - [ErrorType](#cws-ErrorType)
+  
+- [cwspb/service/subject_hub.proto](#cwspb_service_subject_hub-proto)
+    - [RequestSensorTemperature](#cws-RequestSensorTemperature)
+    - [ResponseSensorTemperature](#cws-ResponseSensorTemperature)
+  
+    - [SubjectHubService](#cws-SubjectHubService)
+  
+- [cwspb/service/simulation.proto](#cwspb_service_simulation-proto)
+    - [RequestSimulationState](#cws-RequestSimulationState)
+    - [ResponseSimulationState](#cws-ResponseSimulationState)
+    - [SimulationState](#cws-SimulationState)
+  
+    - [SimulationStatus](#cws-SimulationStatus)
+    - [SimulationType](#cws-SimulationType)
+  
+    - [SimulationService](#cws-SimulationService)
   
 - [cwspb/service/map.proto](#cwspb_service_map-proto)
     - [RequestCell](#cws-RequestCell)
@@ -22,23 +54,217 @@
   
     - [MapService](#cws-MapService)
   
-- [cwspb/service/simulation.proto](#cwspb_service_simulation-proto)
-    - [RequestSimulationState](#cws-RequestSimulationState)
-    - [ResponseSimulationState](#cws-ResponseSimulationState)
-    - [SimulationState](#cws-SimulationState)
+- [cwspb/map.proto](#cwspb_map-proto)
+    - [Cell](#cws-Cell)
+    - [Map](#cws-Map)
   
-    - [SimulationStatus](#cws-SimulationStatus)
-    - [SimulationType](#cws-SimulationType)
+- [cwspb/subject/sensor.proto](#cwspb_subject_sensor-proto)
+    - [SensorTemperature](#cws-SensorTemperature)
+    - [SubjectSensor](#cws-SubjectSensor)
+    - [SubjectSensorDerived](#cws-SubjectSensorDerived)
   
-    - [SimulationService](#cws-SimulationService)
+- [cwspb/subject/base.proto](#cwspb_subject_base-proto)
+    - [Subject](#cws-Subject)
+    - [SubjectId](#cws-SubjectId)
   
-- [cwspb/service/subject_hub.proto](#cwspb_service_subject_hub-proto)
-    - [RequestSensorTemperature](#cws-RequestSensorTemperature)
-    - [ResponseSensorTemperature](#cws-ResponseSensorTemperature)
+    - [SubjectType](#cws-SubjectType)
   
-    - [SubjectHubService](#cws-SubjectHubService)
+- [cwspb/subject/plain.proto](#cwspb_subject_plain-proto)
+    - [SubjectPlain](#cws-SubjectPlain)
+  
+- [cwspb/subject/interactive.proto](#cwspb_subject_interactive-proto)
+    - [SubjectInteractive](#cws-SubjectInteractive)
+  
+    - [InteractionStateType](#cws-InteractionStateType)
+  
+- [cwspb/subject/derived.proto](#cwspb_subject_derived-proto)
+    - [SubjectDerived](#cws-SubjectDerived)
   
 - [Scalar Value Types](#scalar-value-types)
+
+
+
+<a name="cwspb_general-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/general.proto
+
+
+
+<a name="cws-Coordinates"></a>
+
+### Coordinates
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| x | [int32](#int32) |  |  |
+| y | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="cws-Dimension"></a>
+
+### Dimension
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| width | [int32](#int32) |  |  |
+| height | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="cws-Percentage"></a>
+
+### Percentage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [double](#double) |  |  |
+
+
+
+
+
+
+<a name="cws-Temperature"></a>
+
+### Temperature
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [double](#double) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="cwspb_layer_base-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/layer/base.proto
+
+
+
+<a name="cws-Layer"></a>
+
+### Layer
+
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="cwspb_layer_temperature-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/layer/temperature.proto
+
+
+
+<a name="cws-LayerTemperature"></a>
+
+### LayerTemperature
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Layer](#cws-Layer) |  |  |
+| temperature | [Temperature](#cws-Temperature) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="cwspb_layer_subject-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/layer/subject.proto
+
+
+
+<a name="cws-LayerSubject"></a>
+
+### LayerSubject
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Layer](#cws-Layer) |  |  |
+| subjects | [SubjectDerived](#cws-SubjectDerived) | repeated |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="cwspb_layer-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/layer.proto
+
+
+ 
+
+ 
+
+ 
+
+ 
 
 
 
@@ -106,6 +332,167 @@
  
 
  
+
+ 
+
+
+
+<a name="cwspb_service_subject_hub-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/service/subject_hub.proto
+
+
+
+<a name="cws-RequestSensorTemperature"></a>
+
+### RequestSensorTemperature
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [SubjectId](#cws-SubjectId) |  |  |
+| coordinates | [Coordinates](#cws-Coordinates) |  |  |
+
+
+
+
+
+
+<a name="cws-ResponseSensorTemperature"></a>
+
+### ResponseSensorTemperature
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Response](#cws-Response) |  |  |
+| temp | [Temperature](#cws-Temperature) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="cws-SubjectHubService"></a>
+
+### SubjectHubService
+Communicates with existing subjects to get/set their state
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetTemperature | [RequestSensorTemperature](#cws-RequestSensorTemperature) | [ResponseSensorTemperature](#cws-ResponseSensorTemperature) |  |
+
+ 
+
+
+
+<a name="cwspb_service_simulation-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/service/simulation.proto
+
+
+
+<a name="cws-RequestSimulationState"></a>
+
+### RequestSimulationState
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| state | [SimulationState](#cws-SimulationState) |  |  |
+
+
+
+
+
+
+<a name="cws-ResponseSimulationState"></a>
+
+### ResponseSimulationState
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Response](#cws-Response) |  |  |
+| state | [SimulationState](#cws-SimulationState) |  |  |
+
+
+
+
+
+
+<a name="cws-SimulationState"></a>
+
+### SimulationState
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| status | [SimulationStatus](#cws-SimulationStatus) | optional |  |
+| type | [SimulationType](#cws-SimulationType) | optional |  |
+| task_frequency | [double](#double) | optional |  |
+| current_tick | [int32](#int32) | optional |  |
+| last_tick | [int32](#int32) | optional |  |
+
+
+
+
+
+ 
+
+
+<a name="cws-SimulationStatus"></a>
+
+### SimulationStatus
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| SIMULATION_STATUS_UNSPECIFIED | 0 |  |
+| SIMULATION_STATUS_RUNNING | 1 |  |
+| SIMULATION_STATUS_STOPPED | 2 |  |
+
+
+
+<a name="cws-SimulationType"></a>
+
+### SimulationType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| SIMULATION_TYPE_UNSPECIFIED | 0 |  |
+| SIMULATION_TYPE_LIMITED | 1 |  |
+| SIMULATION_TYPE_INFINITE | 2 |  |
+
+
+ 
+
+ 
+
+
+<a name="cws-SimulationService"></a>
+
+### SimulationService
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetSimulationState | [Request](#cws-Request) | [ResponseSimulationState](#cws-ResponseSimulationState) |  |
+| SetSimulationState | [RequestSimulationState](#cws-RequestSimulationState) | [Response](#cws-Response) |  |
 
  
 
@@ -253,142 +640,40 @@
 
 
 
-<a name="cwspb_service_simulation-proto"></a>
+<a name="cwspb_map-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## cwspb/service/simulation.proto
+## cwspb/map.proto
 
 
 
-<a name="cws-RequestSimulationState"></a>
+<a name="cws-Cell"></a>
 
-### RequestSimulationState
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| state | [SimulationState](#cws-SimulationState) |  |  |
-
-
-
-
-
-
-<a name="cws-ResponseSimulationState"></a>
-
-### ResponseSimulationState
+### Cell
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| base | [Response](#cws-Response) |  |  |
-| state | [SimulationState](#cws-SimulationState) |  |  |
-
-
-
-
-
-
-<a name="cws-SimulationState"></a>
-
-### SimulationState
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| status | [SimulationStatus](#cws-SimulationStatus) | optional |  |
-| type | [SimulationType](#cws-SimulationType) | optional |  |
-| task_frequency | [double](#double) | optional |  |
-| current_tick | [int32](#int32) | optional |  |
-| last_tick | [int32](#int32) | optional |  |
-
-
-
-
-
- 
-
-
-<a name="cws-SimulationStatus"></a>
-
-### SimulationStatus
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| SIMULATION_STATUS_UNSPECIFIED | 0 |  |
-| SIMULATION_STATUS_RUNNING | 1 |  |
-| SIMULATION_STATUS_STOPPED | 2 |  |
-
-
-
-<a name="cws-SimulationType"></a>
-
-### SimulationType
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| SIMULATION_TYPE_UNSPECIFIED | 0 |  |
-| SIMULATION_TYPE_LIMITED | 1 |  |
-| SIMULATION_TYPE_INFINITE | 2 |  |
-
-
- 
-
- 
-
-
-<a name="cws-SimulationService"></a>
-
-### SimulationService
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| GetSimulationState | [Request](#cws-Request) | [ResponseSimulationState](#cws-ResponseSimulationState) |  |
-| SetSimulationState | [RequestSimulationState](#cws-RequestSimulationState) | [Response](#cws-Response) |  |
-
- 
-
-
-
-<a name="cwspb_service_subject_hub-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## cwspb/service/subject_hub.proto
-
-
-
-<a name="cws-RequestSensorTemperature"></a>
-
-### RequestSensorTemperature
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [SubjectId](#cws-SubjectId) |  |  |
 | coordinates | [Coordinates](#cws-Coordinates) |  |  |
+| subject | [LayerSubject](#cws-LayerSubject) |  |  |
+| temperature | [LayerTemperature](#cws-LayerTemperature) |  |  |
 
 
 
 
 
 
-<a name="cws-ResponseSensorTemperature"></a>
+<a name="cws-Map"></a>
 
-### ResponseSensorTemperature
+### Map
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| base | [Response](#cws-Response) |  |  |
-| temp | [Temperature](#cws-Temperature) |  |  |
+| dimension | [Dimension](#cws-Dimension) |  |  |
+| cells | [Cell](#cws-Cell) | repeated |  |
 
 
 
@@ -400,15 +685,244 @@
 
  
 
+ 
 
-<a name="cws-SubjectHubService"></a>
 
-### SubjectHubService
-Communicates with existing subjects to get/set their state
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| GetTemperature | [RequestSensorTemperature](#cws-RequestSensorTemperature) | [ResponseSensorTemperature](#cws-ResponseSensorTemperature) |  |
+<a name="cwspb_subject_sensor-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/subject/sensor.proto
+
+
+
+<a name="cws-SensorTemperature"></a>
+
+### SensorTemperature
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [SubjectSensor](#cws-SubjectSensor) |  |  |
+| temperature | [Temperature](#cws-Temperature) |  |  |
+
+
+
+
+
+
+<a name="cws-SubjectSensor"></a>
+
+### SubjectSensor
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Subject](#cws-Subject) |  |  |
+
+
+
+
+
+
+<a name="cws-SubjectSensorDerived"></a>
+
+### SubjectSensorDerived
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [SubjectSensor](#cws-SubjectSensor) |  |  |
+| temperature | [SensorTemperature](#cws-SensorTemperature) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="cwspb_subject_base-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/subject/base.proto
+
+
+
+<a name="cws-Subject"></a>
+
+### Subject
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| weight | [double](#double) |  |  |
+| heat_capacity | [double](#double) |  |  |
+| heat_transmission | [Percentage](#cws-Percentage) |  |  |
+| temperature | [Temperature](#cws-Temperature) |  |  |
+| light_transmission | [Percentage](#cws-Percentage) |  |  |
+| humidity_transmission | [Percentage](#cws-Percentage) |  |  |
+| id | [SubjectId](#cws-SubjectId) |  |  |
+
+
+
+
+
+
+<a name="cws-SubjectId"></a>
+
+### SubjectId
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int32](#int32) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="cws-SubjectType"></a>
+
+### SubjectType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| SUBJECT_TYPE_UNSPECIFIED | 0 |  |
+| SUBJECT_TYPE_PLAIN | 1 |  |
+| SUBJECT_TYPE_INTERACTIVE | 2 |  |
+| SUBJECT_TYPE_SENSOR | 3 |  |
+
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="cwspb_subject_plain-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/subject/plain.proto
+
+
+
+<a name="cws-SubjectPlain"></a>
+
+### SubjectPlain
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Subject](#cws-Subject) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="cwspb_subject_interactive-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/subject/interactive.proto
+
+
+
+<a name="cws-SubjectInteractive"></a>
+
+### SubjectInteractive
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Subject](#cws-Subject) |  |  |
+| interaction_state_type | [InteractionStateType](#cws-InteractionStateType) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="cws-InteractionStateType"></a>
+
+### InteractionStateType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| INTERACTION_STATE_TYPE_UNSPECIFIED | 0 |  |
+| INTERACTION_STATE_TYPE_OPENED | 1 |  |
+| INTERACTION_STATE_TYPE_CLOSED | 2 |  |
+
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="cwspb_subject_derived-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/subject/derived.proto
+
+
+
+<a name="cws-SubjectDerived"></a>
+
+### SubjectDerived
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Subject](#cws-Subject) |  |  |
+| interactive | [SubjectInteractive](#cws-SubjectInteractive) |  |  |
+| plain | [SubjectPlain](#cws-SubjectPlain) |  |  |
+| sensor | [SubjectSensorDerived](#cws-SubjectSensorDerived) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
 
  
 

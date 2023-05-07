@@ -4,7 +4,7 @@ set -o nounset
 
 # protoc-gen-doc should be in $PATH
 
-PROTOS='cwspb/service/*'
+PROTOS=`find . -type f -name "*.proto"`
 
 OUT_FILE=$1
 OUT_DIR=`dirname $1`
