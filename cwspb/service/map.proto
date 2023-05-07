@@ -26,19 +26,6 @@ message ResponseCell {
   Cell cell = 10;
 }
 
-enum SetSubjectType {
-  SET_SUBJECT_TYPE_UNSPECIFIED = 0;
-  SET_SUBJECT_TYPE_INSERT = 1;
-  SET_SUBJECT_TYPE_UPDATE = 2;
-  SET_SUBJECT_TYPE_DELETE = 3;
-}
-
-message RequestSetSubject {
-  SetSubjectType type = 1;
-  Coordinates coordinates = 10;
-  SubjectDerived subject = 11;
-}
-
 message RequestSelectSubject {
   SubjectId id = 1;
   SubjectType type = 2;
@@ -51,6 +38,19 @@ message ResponseSelectSubject {
   Coordinates coordinates = 3;
 }
 
+enum SubjectQueryType {
+  SUBJECT_QUERY_TYPE_UNSPECIFIED = 0;
+  SUBJECT_QUERY_TYPE_INSERT = 1;
+  SUBJECT_QUERY_TYPE_UPDATE = 2;
+  SUBJECT_QUERY_TYPE_DELETE = 3;
+}
+
+message RequestSetSubject {
+  SubjectQueryType query_type = 1;
+  Coordinates coordinates = 10;
+  SubjectDerived subject = 11;
+}
+
 
 service MapService {
   rpc GetMapDimension(Request) returns (ResponseDimension);
@@ -61,7 +61,7 @@ service MapService {
 
   rpc GetMap(Request) returns (stream ResponseCell);
 
-  rpc SetSubject(RequestSetSubject) returns (Response);
-
   rpc GetSubject(RequestSelectSubject) returns (ResponseSelectSubject);
+
+  rpc SetSubject(RequestSetSubject) returns (Response);
 };

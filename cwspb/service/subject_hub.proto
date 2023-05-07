@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package cws;
+
+import "cwspb/service/general.proto";
+
+message RequestSensorTemperature {
+  SubjectId id = 1;
+  Coordinates coordinates = 2;
+};
+
+message ResponseSensorTemperature {
+  Response base = 1;
+  Temperature temp = 2;
+};
+
+/*
+ * Communicates with existing subjects to get/set their state
+ */
+service SubjectHubService {
+  rpc GetTemperature(Request) returns 
+};
