@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-package cws;
-
-import "cwspb/subject/base.proto";
-
-message SubjectPlain {
-  Subject base = 1;
-};

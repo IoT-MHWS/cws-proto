@@ -38,6 +38,5 @@ message ResponseSimulationState {
 
 service SimulationService {
   rpc GetSimulationState(Request) returns (ResponseSimulationState);
-
   rpc SetSimulationState(RequestSimulationState) returns (Response);
 };

@@ -1,0 +1,124 @@
+syntax = "proto3";
+
+package cws.subject;
+
+import "cwspb/common.proto";
+import "cwspb/network.proto";
+import "cwspb/physical.proto";
+
+enum Type {
+  TYPE_UNSPECIFIED = 0;
+  TYPE_PLAIN = 1;
+  TYPE_TEMP_EMITTER = 2;
+  TYPE_TURNABLE_TEMP_EMITTER = 3;
+  TYPE_LIGHT_EMITTER = 4;
+  TYPE_TURNABLE_LIGHT_EMITTER = 5;
+  TYPE_NETWORK_DEVICE = 6;
+  TYPE_INFRARED_CAMERA = 7;
+  TYPE_LIGHT_CAMERA = 8;
+  TYPE_TURNABLE = 9;
+  TYPE_AIR_TEMPERATURE_SENSOR = 10;
+  TYPE_ILLUMINATION_SENSOR = 11;
+}
+
+enum TurnableStatus {
+  TURNABLE_STATUS_UNSPECIFIED = 0;
+  TURNABLE_STATUS_OFF = 1;
+  TURNABLE_STATUS_ON = 2;
+};
+
+message TempSourceParams {
+  double heat_production = 1;
+};
+
+message LightSourceParams {
+  Illumination raw_illumination = 1;
+};
+
+message Id {
+  Type type = 1;
+  int32 idx = 2;
+};
+
+message Plain {
+  Physical base = 1;
+  Id id = 10;
+  double surface_area = 11;
+  Obstruction air_obstruction = 12;
+};
+
+message TempEmitter {
+  Plain base = 1;
+  TempSourceParams temp_params = 10;
+};
+
+message TurnableTempEmitter {
+  TempEmitter base = 1;
+  TurnableStatus turnable_status = 10;
+  TempSourceParams off_temp_params = 11;
+};
+
+message LightEmitter {
+  TempEmitter base = 1;
+  LightSourceParams light_params = 10;
+};
+
+message TurnableLightEmitter {
+  LightEmitter base = 1;  
+  LightSourceParams off_light_params = 10;
+  TempSourceParams off_temp_params = 11;
+};
+
+message NetworkDevice {
+  Plain base = 1;
+  repeated cws.network.Packet transmit_packets = 10; //out
+  repeated cws.network.Packet received_packets = 11; //out
+};
+
+message BaseCamera {
+  Plain base = 1;
+  double power = 10;
+  double power_threshold = 11;
+};
+
+message InfraredCamera {
+  BaseCamera base = 1;
+};
+
+message LightCamera {
+  BaseCamera base = 1;
+  double light_threshold = 10;
+};
+
+message Turnable {
+  Plain base = 1;
+  Obstruction off_light_obs = 10;
+  Obstruction off_wireless_obs = 11;
+  Obstruction off_air_obs = 12;
+};
+
+message SensorAirTemperature {
+  Plain base = 1;
+  Temperature air_temperature = 10; //out
+};
+
+message SensorIllumination {
+  Plain base = 1;
+  Illumination cell_illumination = 10; //out
+};
+
+message Any {
+  oneof subject {
+    Plain plain = 1;  
+    TempEmitter temp_emitter = 2;
+    TurnableTempEmitter turnable_temp_emitter = 3;
+    LightEmitter light_emitter = 4;
+    TurnableLightEmitter turnable_light_emitter = 5;
+    NetworkDevice network_device = 6;
+    InfraredCamera infrared_camera = 7;
+    LightCamera light_camera = 8;
+    Turnable turnable = 9;
+    SensorAirTemperature sensor_air_temperature = 10;
+    SensorIllumination sensor_illumination = 11;
+  };
+};

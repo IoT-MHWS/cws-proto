@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package cws;
+
+import "cwspb/common.proto";
+
+message Physical {
+  double weight = 1;
+  double heat_capacity = 2;
+  Temperature temperature = 3;
+  Obstruction light_obstruction = 4;
+  Obstruction wireless_obstruction = 5;
+};

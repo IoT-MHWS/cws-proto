@@ -2,15 +2,17 @@ syntax = "proto3";
 
 package cws;
 
-import "cwspb/general.proto";
-import "cwspb/layer/subject.proto";
-import "cwspb/layer/temperature.proto";
+import "cwspb/common.proto";
+import "cwspb/layer.proto";
 
 
 message Cell {
   Coordinates coordinates = 1;
-  LayerSubject subject = 10;
-  LayerTemperature temperature = 11;
+  layer.Air air = 10;
+  layer.Illumination illumination = 11;
+  layer.WirelessNetwork wireless_network = 12;
+  layer.Obstruction obstruction = 13;
+  layer.Subject subject = 14;
 };
 
 message Map {

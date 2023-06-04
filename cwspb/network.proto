@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cws.network;
+
+message Packet {
+  bytes content = 1;
+};
+
+message WirelessContainer {
+  Packet packet = 10;
+  double signal_power = 11;
+};

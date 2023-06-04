@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package cws.air;
+
+import "cwspb/common.proto";
+import "cwspb/physical.proto";
+
+enum Type {
+  TYPE_UNSPECIFIED = 0;
+  TYPE_PLAIN = 1;
+};
+
+message Id {
+  Type type = 1;
+  int32 idx = 2;
+};
+
+message Plain {
+  Physical base = 1;
+  double surface_area = 10;
+  Obstruction air_obstruction = 11;
+};

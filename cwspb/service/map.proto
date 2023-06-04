@@ -2,60 +2,65 @@ syntax = "proto3";
 
 package cws;
 
-import "cwspb/general.proto";
+import "cwspb/common.proto";
 import "cwspb/map.proto";
 import "cwspb/service/general.proto";
-import "cwspb/subject/derived.proto";
+import "cwspb/subject.proto";
 
 message RequestDimension {
-  Dimension dimension = 1;
+  Request base = 1;
+  Dimension dimension = 10;
 }
 
 message ResponseDimension {
   Response base = 1;
-  Dimension dimension = 2;
+  Dimension dimension = 10;
 }
 
-message RequestCell {
-  Coordinates coordinates = 1;
-};
+// message RequestCell {
+//   Request base = 1;
+//   Coordinates coordinates = 10;
+// };
 
-message ResponseCell {
-  Response base = 1;
-  Cell cell = 10;
-}
+// message ResponseCell {
+//   Response base = 1;
+//   Cell cell = 10;
+// }
 
 enum SubjectQueryType {
   SUBJECT_QUERY_TYPE_UNSPECIFIED = 0;
   SUBJECT_QUERY_TYPE_INSERT = 1;
   SUBJECT_QUERY_TYPE_UPDATE = 2;
   SUBJECT_QUERY_TYPE_DELETE = 3;
-  SUBJECT_QUERY_TYPE_SELECT = 4;
 }
 
 message RequestQuerySubject {
-  SubjectQueryType query_type = 1;
+  Request base = 1;
+  SubjectQueryType query_type = 10;
+  Coordinates coordinates = 11;
+  subject.Any subject = 12;
+}
+
+message RequestSelectSubject {
+  Request base = 1;
   Coordinates coordinates = 10;
-  SubjectDerived subject = 11;
+  subject.Id id = 11;
 }
 
 message ResponseSelectSubject {
   Response base = 1;
   Coordinates coordinates = 10;
-  SubjectDerived derived = 11;
+  subject.Any derived = 11;
 }
 
 
 service MapService {
   rpc GetMapDimension(Request) returns (ResponseDimension);
+  rpc CreateMap(RequestDimension) returns (Response); // aka SetMapDimension
 
-  rpc CreateMap(RequestDimension) returns (Response);
-
-  rpc GetCell(RequestCell) returns (ResponseCell);
-
-  rpc GetMap(Request) returns (stream ResponseCell);
+  // rpc GetCell(RequestCell) returns (ResponseCell);
+  // rpc GetMap(Request) returns (stream ResponseCell);
 
   rpc GetSubject(RequestQuerySubject) returns (ResponseSelectSubject);
-
   rpc SetSubject(RequestQuerySubject) returns (Response);
 };
