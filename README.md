@@ -38,7 +38,14 @@
     - [AirId](#cws-AirId)
     - [SubjectId](#cws-SubjectId)
   
-- [cwspb/service/device.proto](#cwspb_service_device-proto)
+- [cwspb/service/general.proto](#cwspb_service_general-proto)
+    - [Request](#cws-Request)
+    - [Response](#cws-Response)
+    - [Status](#cws-Status)
+  
+    - [ErrorType](#cws-ErrorType)
+  
+- [cwspb/service/sv_device.proto](#cwspb_service_sv_device-proto)
     - [RequestDevice](#cws-RequestDevice)
     - [RequestTransmitPackets](#cws-RequestTransmitPackets)
     - [ResponseCameraInfo](#cws-ResponseCameraInfo)
@@ -48,14 +55,7 @@
   
     - [DeviceService](#cws-DeviceService)
   
-- [cwspb/service/general.proto](#cwspb_service_general-proto)
-    - [Request](#cws-Request)
-    - [Response](#cws-Response)
-    - [Status](#cws-Status)
-  
-    - [ErrorType](#cws-ErrorType)
-  
-- [cwspb/service/map.proto](#cwspb_service_map-proto)
+- [cwspb/service/sv_map.proto](#cwspb_service_sv_map-proto)
     - [RequestCell](#cws-RequestCell)
     - [RequestDimension](#cws-RequestDimension)
     - [RequestInsertAir](#cws-RequestInsertAir)
@@ -72,7 +72,7 @@
   
     - [MapService](#cws-MapService)
   
-- [cwspb/service/simulation.proto](#cwspb_service_simulation-proto)
+- [cwspb/service/sv_simulation.proto](#cwspb_service_sv_simulation-proto)
     - [RequestSimulationState](#cws-RequestSimulationState)
     - [ResponseSimulationState](#cws-ResponseSimulationState)
     - [SimulationState](#cws-SimulationState)
@@ -537,10 +537,79 @@
 
 
 
-<a name="cwspb_service_device-proto"></a>
+<a name="cwspb_service_general-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## cwspb/service/device.proto
+## cwspb/service/general.proto
+
+
+
+<a name="cws-Request"></a>
+
+### Request
+
+
+
+
+
+
+
+<a name="cws-Response"></a>
+
+### Response
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| status | [Status](#cws-Status) |  |  |
+
+
+
+
+
+
+<a name="cws-Status"></a>
+
+### Status
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| text | [string](#string) | optional |  |
+| type | [ErrorType](#cws-ErrorType) | optional |  |
+
+
+
+
+
+ 
+
+
+<a name="cws-ErrorType"></a>
+
+### ErrorType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ERROR_TYPE_UNSPECIFIED | 0 |  |
+| ERROR_TYPE_BAD_REQUEST | 1 |  |
+
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="cwspb_service_sv_device-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/service/sv_device.proto
 
 
 
@@ -663,79 +732,10 @@
 
 
 
-<a name="cwspb_service_general-proto"></a>
+<a name="cwspb_service_sv_map-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## cwspb/service/general.proto
-
-
-
-<a name="cws-Request"></a>
-
-### Request
-
-
-
-
-
-
-
-<a name="cws-Response"></a>
-
-### Response
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| status | [Status](#cws-Status) |  |  |
-
-
-
-
-
-
-<a name="cws-Status"></a>
-
-### Status
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| text | [string](#string) | optional |  |
-| type | [ErrorType](#cws-ErrorType) | optional |  |
-
-
-
-
-
- 
-
-
-<a name="cws-ErrorType"></a>
-
-### ErrorType
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| ERROR_TYPE_UNSPECIFIED | 0 |  |
-| ERROR_TYPE_BAD_REQUEST | 1 |  |
-
-
- 
-
- 
-
- 
-
-
-
-<a name="cwspb_service_map-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## cwspb/service/map.proto
+## cwspb/service/sv_map.proto
 
 
 
@@ -961,10 +961,10 @@
 
 
 
-<a name="cwspb_service_simulation-proto"></a>
+<a name="cwspb_service_sv_simulation-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## cwspb/service/simulation.proto
+## cwspb/service/sv_simulation.proto
 
 
 
