@@ -19,6 +19,7 @@ enum Type {
   TYPE_TURNABLE = 9;
   TYPE_AIR_TEMPERATURE_SENSOR = 10;
   TYPE_ILLUMINATION_SENSOR = 11;
+  TYPE_WIRELESS_NETWORK_DEVICE = 12;
 }
 
 enum TurnableStatus {
@@ -65,14 +66,21 @@ message LightEmitter {
 
 message TurnableLightEmitter {
   LightEmitter base = 1;  
-  LightSourceParams off_light_params = 10;
-  TempSourceParams off_temp_params = 11;
+  TurnableStatus turnable_status = 10;
+  LightSourceParams off_light_params = 11;
+  TempSourceParams off_temp_params = 12;
 };
 
 message NetworkDevice {
   Plain base = 1;
-  repeated cwspb.network.Packet transmit_packets = 10; //out
-  repeated cwspb.network.Packet received_packets = 11; //out
+  repeated cwspb.network.Packet transmit_packets = 10;
+  repeated cwspb.network.Packet received_packets = 11;
+};
+
+message WirelessNetworkDevice {
+  NetworkDevice base = 1;
+  double transmit_power = 10;
+  double receive_threshold = 11;
 };
 
 message BaseCamera {
@@ -92,19 +100,20 @@ message LightCamera {
 
 message Turnable {
   Plain base = 1;
-  Obstruction off_light_obs = 10;
-  Obstruction off_wireless_obs = 11;
-  Obstruction off_air_obs = 12;
+  TurnableStatus turnable_status = 10;
+  Obstruction off_light_obs = 11;
+  Obstruction off_wireless_obs = 12;
+  Obstruction off_air_obs = 13;
 };
 
 message SensorAirTemperature {
   Plain base = 1;
-  Temperature air_temperature = 10; //out
+  Temperature air_temperature = 10;
 };
 
 message SensorIllumination {
   Plain base = 1;
-  Illumination cell_illumination = 10; //out
+  Illumination cell_illumination = 10;
 };
 
 message Any {
@@ -120,5 +129,6 @@ message Any {
     Turnable turnable = 9;
     SensorAirTemperature sensor_air_temperature = 10;
     SensorIllumination sensor_illumination = 11;
+    WirelessNetworkDevice wireless_network_device = 12;
   };
 };

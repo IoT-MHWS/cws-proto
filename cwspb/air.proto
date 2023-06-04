@@ -17,6 +17,6 @@ message Id {
 
 message Plain {
   Physical base = 1;
-  double surface_area = 10;
-  Obstruction air_obstruction = 11;
+  Id id = 10;
+  double heat_transfer_coef = 11;
 };

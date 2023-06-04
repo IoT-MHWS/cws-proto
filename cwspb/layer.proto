@@ -3,6 +3,7 @@ syntax = "proto3";
 package cwspb.layer;
 
 import "cwspb/air.proto";
+import "cwspb/common.proto";
 import "cwspb/network.proto";
 import "cwspb/subject.proto";
 
@@ -11,7 +12,7 @@ message Air {
 };
 
 message Illumination {
-  Illumination illumination = 10;
+  cwspb.Illumination illumination = 10;
 };
 
 message WirelessNetwork {
@@ -20,9 +21,9 @@ message WirelessNetwork {
 };
 
 message Obstruction {
-  Obstruction light_obstruction = 10;   
-  Obstruction air_obstruction = 11;
-  Obstruction wireless_obstruction = 12;
+  cwspb.Obstruction light_obstruction = 10;   
+  cwspb.Obstruction air_obstruction = 11;
+  cwspb.Obstruction wireless_obstruction = 12;
 };
 
 message Subject {
