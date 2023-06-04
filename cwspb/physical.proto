@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cws;
+package cwspb;
 
 import "cwspb/common.proto";
 

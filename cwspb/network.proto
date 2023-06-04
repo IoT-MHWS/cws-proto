@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cws.network;
+package cwspb.network;
 
 message Packet {
   bytes content = 1;

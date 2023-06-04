@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cws.subject;
+package cwspb.subject;
 
 import "cwspb/common.proto";
 import "cwspb/network.proto";
@@ -71,8 +71,8 @@ message TurnableLightEmitter {
 
 message NetworkDevice {
   Plain base = 1;
-  repeated cws.network.Packet transmit_packets = 10; //out
-  repeated cws.network.Packet received_packets = 11; //out
+  repeated cwspb.network.Packet transmit_packets = 10; //out
+  repeated cwspb.network.Packet received_packets = 11; //out
 };
 
 message BaseCamera {

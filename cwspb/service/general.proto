@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cws;
+package cwspb;
 
 enum ErrorType {
   ERROR_TYPE_UNSPECIFIED = 0;

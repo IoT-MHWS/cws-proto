@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package cws.layer;
+package cwspb.layer;
 
 import "cwspb/air.proto";
 import "cwspb/network.proto";
 import "cwspb/subject.proto";
 
 message Air {
-  repeated cws.air.Plain airs = 10;
+  repeated cwspb.air.Plain airs = 10;
 };
 
 message Illumination {
@@ -15,8 +15,8 @@ message Illumination {
 };
 
 message WirelessNetwork {
-  repeated cws.network.WirelessContainer transmitables = 10;
-  repeated cws.network.WirelessContainer receivables = 11;
+  repeated cwspb.network.WirelessContainer transmitables = 10;
+  repeated cwspb.network.WirelessContainer receivables = 11;
 };
 
 message Obstruction {
@@ -26,5 +26,5 @@ message Obstruction {
 };
 
 message Subject {
-  repeated cws.subject.Any subjects = 10;
+  repeated cwspb.subject.Any subjects = 10;
 };
