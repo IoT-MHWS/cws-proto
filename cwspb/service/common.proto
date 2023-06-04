@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package cws;
+
+import "cwspb/air.proto";
+import "cwspb/common.proto";
+import "cwspb/subject.proto";
+
+message SubjectId {
+  Coordinates coordinates = 10;
+  subject.Id id = 11;
+};
+
+message AirId {
+  Coordinates coordinates = 10;
+  air.Id id = 11;
+};

@@ -2,8 +2,10 @@ syntax = "proto3";
 
 package cws;
 
+import "cwspb/air.proto";
 import "cwspb/common.proto";
 import "cwspb/map.proto";
+import "cwspb/service/common.proto";
 import "cwspb/service/general.proto";
 import "cwspb/subject.proto";
 
@@ -39,24 +41,40 @@ enum SubjectModifyType {
   SUBJECT_MODIFY_TYPE_DELETE = 3;
 }
 
-message RequestModifySubject {
-  Request base = 1;
-  SubjectModifyType modify_type = 10;
-  Coordinates coordinates = 11;
-  subject.Any subject = 12;
-}
-
 message RequestSelectSubject {
   Request base = 1;
-  Coordinates coordinates = 10;
-  subject.Id id = 11;
+  SubjectId id = 10;
 }
 
 message ResponseSelectSubject {
   Response base = 1;
-  Coordinates coordinates = 10;
+  SubjectId id = 10;
   subject.Any subject = 11;
 }
+
+message RequestModifySubject {
+  Request base = 1;
+  SubjectModifyType modify_type = 10;
+  SubjectId id = 11;
+  subject.Any subject = 12;
+}
+
+message RequestSelectAir {
+  Request base = 1;
+  AirId id = 10;
+};
+
+message ResponseSelectAir {
+  Response base = 1;
+  AirId id = 10;
+  air.Plain air = 11;
+};
+
+message RequestInsertAir {
+  Request base = 1;
+  AirId id = 10;
+  air.Plain air = 11;
+};
 
 
 service MapService {
@@ -69,4 +87,7 @@ service MapService {
 
   rpc GetSubject(RequestSelectSubject) returns (ResponseSelectSubject);
   rpc SetSubject(RequestModifySubject) returns (Response);
+
+  rpc GetAir(RequestSelectAir) returns (ResponseSelectAir);
+  rpc InsertAir(RequestInsertAir) returns (Response);
 };

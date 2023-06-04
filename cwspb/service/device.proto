@@ -2,24 +2,47 @@ syntax = "proto3";
 
 package cws;
 
-// import "cwspb/common.proto";
-// import "cwspb/service/general.proto";
-// import "cwspb/subject/base.proto";
+import "cwspb/common.proto";
+import "cwspb/network.proto";
+import "cwspb/service/common.proto";
+import "cwspb/service/general.proto";
 
-// message RequestSensorTemperature {
-//   SubjectId id = 1;
-//   Coordinates coordinates = 2;
-// };
+message RequestDevice {
+  Request base = 1;
+  SubjectId id = 10; 
+};
 
-// message ResponseSensorTemperature {
-//   Response base = 1;
-//   Temperature temp = 2;
-// };
+message ResponseSensorAirTemperature {
+  Response base = 1;
+  Temperature temp = 10;
+};
 
-// /*
-//  * Communicates with existing subjects to get/set their state
-//  */
-// service DeviceService {
-//   rpc GetTemperature(RequestSensorTemperature)
-//     returns (ResponseSensorTemperature);
-// };
+message ResponseSensorIllumination {
+  Response base = 1;
+  Illumination illumination = 10;
+};
+
+message ResponseCameraInfo {
+  Response base = 1;
+  repeated SubjectId visible_subjects = 10;
+};
+
+message RequestTransmitPackets {
+  RequestDevice base = 1;
+  repeated network.Packet packets = 10;
+};
+
+message ResponseReceivedPackets {
+  Response base = 1;
+  repeated network.Packet packets = 10;
+};
+
+service DeviceService {
+  rpc GetAirTemperature(RequestDevice) returns (ResponseSensorAirTemperature);
+  rpc GetIllumination(RequestDevice) returns (ResponseSensorIllumination);
+
+  rpc GetCameraInfo(RequestDevice) returns (ResponseCameraInfo);
+
+  rpc TransmitPacket(RequestTransmitPackets) returns (Response);
+  rpc ReceivePackets(RequestDevice) returns (ResponseReceivedPackets);
+};
