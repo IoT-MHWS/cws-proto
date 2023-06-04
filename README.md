@@ -3,25 +3,50 @@
 
 ## Table of Contents
 
-- [cwspb/general.proto](#cwspb_general-proto)
+- [cwspb/air.proto](#cwspb_air-proto)
+    - [Id](#cws-air-Id)
+    - [Plain](#cws-air-Plain)
+  
+    - [Type](#cws-air-Type)
+  
+- [cwspb/common.proto](#cwspb_common-proto)
     - [Coordinates](#cws-Coordinates)
     - [Dimension](#cws-Dimension)
-    - [Percentage](#cws-Percentage)
+    - [Illumination](#cws-Illumination)
+    - [Obstruction](#cws-Obstruction)
     - [Temperature](#cws-Temperature)
   
 - [cwspb/layer.proto](#cwspb_layer-proto)
-- [cwspb/layer/base.proto](#cwspb_layer_base-proto)
-    - [Layer](#cws-Layer)
-  
-- [cwspb/layer/subject.proto](#cwspb_layer_subject-proto)
-    - [LayerSubject](#cws-LayerSubject)
-  
-- [cwspb/layer/temperature.proto](#cwspb_layer_temperature-proto)
-    - [LayerTemperature](#cws-LayerTemperature)
+    - [Air](#cws-layer-Air)
+    - [Illumination](#cws-layer-Illumination)
+    - [Obstruction](#cws-layer-Obstruction)
+    - [Subject](#cws-layer-Subject)
+    - [WirelessNetwork](#cws-layer-WirelessNetwork)
   
 - [cwspb/map.proto](#cwspb_map-proto)
     - [Cell](#cws-Cell)
     - [Map](#cws-Map)
+  
+- [cwspb/network.proto](#cwspb_network-proto)
+    - [Packet](#cws-network-Packet)
+    - [WirelessContainer](#cws-network-WirelessContainer)
+  
+- [cwspb/physical.proto](#cwspb_physical-proto)
+    - [Physical](#cws-Physical)
+  
+- [cwspb/service/common.proto](#cwspb_service_common-proto)
+    - [AirId](#cws-AirId)
+    - [SubjectId](#cws-SubjectId)
+  
+- [cwspb/service/device.proto](#cwspb_service_device-proto)
+    - [RequestDevice](#cws-RequestDevice)
+    - [RequestTransmitPackets](#cws-RequestTransmitPackets)
+    - [ResponseCameraInfo](#cws-ResponseCameraInfo)
+    - [ResponseReceivedPackets](#cws-ResponseReceivedPackets)
+    - [ResponseSensorAirTemperature](#cws-ResponseSensorAirTemperature)
+    - [ResponseSensorIllumination](#cws-ResponseSensorIllumination)
+  
+    - [DeviceService](#cws-DeviceService)
   
 - [cwspb/service/general.proto](#cwspb_service_general-proto)
     - [Request](#cws-Request)
@@ -33,12 +58,17 @@
 - [cwspb/service/map.proto](#cwspb_service_map-proto)
     - [RequestCell](#cws-RequestCell)
     - [RequestDimension](#cws-RequestDimension)
-    - [RequestQuerySubject](#cws-RequestQuerySubject)
+    - [RequestInsertAir](#cws-RequestInsertAir)
+    - [RequestModifySubject](#cws-RequestModifySubject)
+    - [RequestSelectAir](#cws-RequestSelectAir)
+    - [RequestSelectSubject](#cws-RequestSelectSubject)
     - [ResponseCell](#cws-ResponseCell)
     - [ResponseDimension](#cws-ResponseDimension)
+    - [ResponseMap](#cws-ResponseMap)
+    - [ResponseSelectAir](#cws-ResponseSelectAir)
     - [ResponseSelectSubject](#cws-ResponseSelectSubject)
   
-    - [SubjectQueryType](#cws-SubjectQueryType)
+    - [SubjectModifyType](#cws-SubjectModifyType)
   
     - [MapService](#cws-MapService)
   
@@ -52,42 +82,96 @@
   
     - [SimulationService](#cws-SimulationService)
   
-- [cwspb/service/subject_hub.proto](#cwspb_service_subject_hub-proto)
-    - [RequestSensorTemperature](#cws-RequestSensorTemperature)
-    - [ResponseSensorTemperature](#cws-ResponseSensorTemperature)
+- [cwspb/subject.proto](#cwspb_subject-proto)
+    - [Any](#cws-subject-Any)
+    - [BaseCamera](#cws-subject-BaseCamera)
+    - [Id](#cws-subject-Id)
+    - [InfraredCamera](#cws-subject-InfraredCamera)
+    - [LightCamera](#cws-subject-LightCamera)
+    - [LightEmitter](#cws-subject-LightEmitter)
+    - [LightSourceParams](#cws-subject-LightSourceParams)
+    - [NetworkDevice](#cws-subject-NetworkDevice)
+    - [Plain](#cws-subject-Plain)
+    - [SensorAirTemperature](#cws-subject-SensorAirTemperature)
+    - [SensorIllumination](#cws-subject-SensorIllumination)
+    - [TempEmitter](#cws-subject-TempEmitter)
+    - [TempSourceParams](#cws-subject-TempSourceParams)
+    - [Turnable](#cws-subject-Turnable)
+    - [TurnableLightEmitter](#cws-subject-TurnableLightEmitter)
+    - [TurnableTempEmitter](#cws-subject-TurnableTempEmitter)
   
-    - [SubjectHubService](#cws-SubjectHubService)
-  
-- [cwspb/subject/base.proto](#cwspb_subject_base-proto)
-    - [Subject](#cws-Subject)
-    - [SubjectId](#cws-SubjectId)
-  
-    - [SubjectType](#cws-SubjectType)
-  
-- [cwspb/subject/derived.proto](#cwspb_subject_derived-proto)
-    - [SubjectDerived](#cws-SubjectDerived)
-  
-- [cwspb/subject/interactive.proto](#cwspb_subject_interactive-proto)
-    - [SubjectInteractive](#cws-SubjectInteractive)
-  
-    - [InteractionStateType](#cws-InteractionStateType)
-  
-- [cwspb/subject/plain.proto](#cwspb_subject_plain-proto)
-    - [SubjectPlain](#cws-SubjectPlain)
-  
-- [cwspb/subject/sensor.proto](#cwspb_subject_sensor-proto)
-    - [SensorTemperature](#cws-SensorTemperature)
-    - [SubjectSensor](#cws-SubjectSensor)
-    - [SubjectSensorDerived](#cws-SubjectSensorDerived)
+    - [TurnableStatus](#cws-subject-TurnableStatus)
+    - [Type](#cws-subject-Type)
   
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="cwspb_general-proto"></a>
+<a name="cwspb_air-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## cwspb/general.proto
+## cwspb/air.proto
+
+
+
+<a name="cws-air-Id"></a>
+
+### Id
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [Type](#cws-air-Type) |  |  |
+| idx | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="cws-air-Plain"></a>
+
+### Plain
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [cws.Physical](#cws-Physical) |  |  |
+| surface_area | [double](#double) |  |  |
+| air_obstruction | [cws.Obstruction](#cws-Obstruction) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="cws-air-Type"></a>
+
+### Type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| TYPE_UNSPECIFIED | 0 |  |
+| TYPE_PLAIN | 1 |  |
+
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="cwspb_common-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/common.proto
 
 
 
@@ -123,9 +207,24 @@
 
 
 
-<a name="cws-Percentage"></a>
+<a name="cws-Illumination"></a>
 
-### Percentage
+### Illumination
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [double](#double) |  |  |
+
+
+
+
+
+
+<a name="cws-Obstruction"></a>
+
+### Obstruction
 
 
 
@@ -168,91 +267,79 @@
 ## cwspb/layer.proto
 
 
- 
 
- 
+<a name="cws-layer-Air"></a>
 
- 
-
- 
-
-
-
-<a name="cwspb_layer_base-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## cwspb/layer/base.proto
-
-
-
-<a name="cws-Layer"></a>
-
-### Layer
-
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cwspb_layer_subject-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## cwspb/layer/subject.proto
-
-
-
-<a name="cws-LayerSubject"></a>
-
-### LayerSubject
+### Air
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| base | [Layer](#cws-Layer) |  |  |
-| subjects | [SubjectDerived](#cws-SubjectDerived) | repeated |  |
+| airs | [cws.air.Plain](#cws-air-Plain) | repeated |  |
 
 
 
 
 
- 
 
- 
+<a name="cws-layer-Illumination"></a>
 
- 
-
- 
-
-
-
-<a name="cwspb_layer_temperature-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## cwspb/layer/temperature.proto
-
-
-
-<a name="cws-LayerTemperature"></a>
-
-### LayerTemperature
+### Illumination
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| base | [Layer](#cws-Layer) |  |  |
-| temperature | [Temperature](#cws-Temperature) |  |  |
+| illumination | [Illumination](#cws-layer-Illumination) |  |  |
+
+
+
+
+
+
+<a name="cws-layer-Obstruction"></a>
+
+### Obstruction
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| light_obstruction | [Obstruction](#cws-layer-Obstruction) |  |  |
+| air_obstruction | [Obstruction](#cws-layer-Obstruction) |  |  |
+| wireless_obstruction | [Obstruction](#cws-layer-Obstruction) |  |  |
+
+
+
+
+
+
+<a name="cws-layer-Subject"></a>
+
+### Subject
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| subjects | [cws.subject.Any](#cws-subject-Any) | repeated |  |
+
+
+
+
+
+
+<a name="cws-layer-WirelessNetwork"></a>
+
+### WirelessNetwork
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| transmitables | [cws.network.WirelessContainer](#cws-network-WirelessContainer) | repeated |  |
+| receivables | [cws.network.WirelessContainer](#cws-network-WirelessContainer) | repeated |  |
 
 
 
@@ -284,8 +371,11 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | coordinates | [Coordinates](#cws-Coordinates) |  |  |
-| subject | [LayerSubject](#cws-LayerSubject) |  |  |
-| temperature | [LayerTemperature](#cws-LayerTemperature) |  |  |
+| air | [layer.Air](#cws-layer-Air) |  |  |
+| illumination | [layer.Illumination](#cws-layer-Illumination) |  |  |
+| wireless_network | [layer.WirelessNetwork](#cws-layer-WirelessNetwork) |  |  |
+| obstruction | [layer.Obstruction](#cws-layer-Obstruction) |  |  |
+| subject | [layer.Subject](#cws-layer-Subject) |  |  |
 
 
 
@@ -312,6 +402,262 @@
  
 
  
+
+ 
+
+
+
+<a name="cwspb_network-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/network.proto
+
+
+
+<a name="cws-network-Packet"></a>
+
+### Packet
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| content | [bytes](#bytes) |  |  |
+
+
+
+
+
+
+<a name="cws-network-WirelessContainer"></a>
+
+### WirelessContainer
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| packet | [Packet](#cws-network-Packet) |  |  |
+| signal_power | [double](#double) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="cwspb_physical-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/physical.proto
+
+
+
+<a name="cws-Physical"></a>
+
+### Physical
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| weight | [double](#double) |  |  |
+| heat_capacity | [double](#double) |  |  |
+| temperature | [Temperature](#cws-Temperature) |  |  |
+| light_obstruction | [Obstruction](#cws-Obstruction) |  |  |
+| wireless_obstruction | [Obstruction](#cws-Obstruction) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="cwspb_service_common-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/service/common.proto
+
+
+
+<a name="cws-AirId"></a>
+
+### AirId
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| coordinates | [Coordinates](#cws-Coordinates) |  |  |
+| id | [air.Id](#cws-air-Id) |  |  |
+
+
+
+
+
+
+<a name="cws-SubjectId"></a>
+
+### SubjectId
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| coordinates | [Coordinates](#cws-Coordinates) |  |  |
+| id | [subject.Id](#cws-subject-Id) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="cwspb_service_device-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## cwspb/service/device.proto
+
+
+
+<a name="cws-RequestDevice"></a>
+
+### RequestDevice
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Request](#cws-Request) |  |  |
+| id | [SubjectId](#cws-SubjectId) |  |  |
+
+
+
+
+
+
+<a name="cws-RequestTransmitPackets"></a>
+
+### RequestTransmitPackets
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [RequestDevice](#cws-RequestDevice) |  |  |
+| packets | [network.Packet](#cws-network-Packet) | repeated |  |
+
+
+
+
+
+
+<a name="cws-ResponseCameraInfo"></a>
+
+### ResponseCameraInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Response](#cws-Response) |  |  |
+| visible_subjects | [SubjectId](#cws-SubjectId) | repeated |  |
+
+
+
+
+
+
+<a name="cws-ResponseReceivedPackets"></a>
+
+### ResponseReceivedPackets
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Response](#cws-Response) |  |  |
+| packets | [network.Packet](#cws-network-Packet) | repeated |  |
+
+
+
+
+
+
+<a name="cws-ResponseSensorAirTemperature"></a>
+
+### ResponseSensorAirTemperature
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Response](#cws-Response) |  |  |
+| temp | [Temperature](#cws-Temperature) |  |  |
+
+
+
+
+
+
+<a name="cws-ResponseSensorIllumination"></a>
+
+### ResponseSensorIllumination
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Response](#cws-Response) |  |  |
+| illumination | [Illumination](#cws-Illumination) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="cws-DeviceService"></a>
+
+### DeviceService
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetAirTemperature | [RequestDevice](#cws-RequestDevice) | [ResponseSensorAirTemperature](#cws-ResponseSensorAirTemperature) |  |
+| GetIllumination | [RequestDevice](#cws-RequestDevice) | [ResponseSensorIllumination](#cws-ResponseSensorIllumination) |  |
+| GetCameraInfo | [RequestDevice](#cws-RequestDevice) | [ResponseCameraInfo](#cws-ResponseCameraInfo) |  |
+| TransmitPacket | [RequestTransmitPackets](#cws-RequestTransmitPackets) | [Response](#cws-Response) |  |
+| ReceivePackets | [RequestDevice](#cws-RequestDevice) | [ResponseReceivedPackets](#cws-ResponseReceivedPackets) |  |
 
  
 
@@ -401,6 +747,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| base | [Request](#cws-Request) |  |  |
 | coordinates | [Coordinates](#cws-Coordinates) |  |  |
 
 
@@ -416,6 +763,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| base | [Request](#cws-Request) |  |  |
 | dimension | [Dimension](#cws-Dimension) |  |  |
 
 
@@ -423,17 +771,67 @@
 
 
 
-<a name="cws-RequestQuerySubject"></a>
+<a name="cws-RequestInsertAir"></a>
 
-### RequestQuerySubject
+### RequestInsertAir
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| query_type | [SubjectQueryType](#cws-SubjectQueryType) |  |  |
-| coordinates | [Coordinates](#cws-Coordinates) |  |  |
-| subject | [SubjectDerived](#cws-SubjectDerived) |  |  |
+| base | [Request](#cws-Request) |  |  |
+| id | [AirId](#cws-AirId) |  |  |
+| air | [air.Plain](#cws-air-Plain) |  |  |
+
+
+
+
+
+
+<a name="cws-RequestModifySubject"></a>
+
+### RequestModifySubject
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Request](#cws-Request) |  |  |
+| modify_type | [SubjectModifyType](#cws-SubjectModifyType) |  |  |
+| id | [SubjectId](#cws-SubjectId) |  |  |
+| subject | [subject.Any](#cws-subject-Any) |  |  |
+
+
+
+
+
+
+<a name="cws-RequestSelectAir"></a>
+
+### RequestSelectAir
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Request](#cws-Request) |  |  |
+| id | [AirId](#cws-AirId) |  |  |
+
+
+
+
+
+
+<a name="cws-RequestSelectSubject"></a>
+
+### RequestSelectSubject
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Request](#cws-Request) |  |  |
+| id | [SubjectId](#cws-SubjectId) |  |  |
 
 
 
@@ -472,6 +870,39 @@
 
 
 
+<a name="cws-ResponseMap"></a>
+
+### ResponseMap
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Response](#cws-Response) |  |  |
+| map | [Map](#cws-Map) |  |  |
+
+
+
+
+
+
+<a name="cws-ResponseSelectAir"></a>
+
+### ResponseSelectAir
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Response](#cws-Response) |  |  |
+| id | [AirId](#cws-AirId) |  |  |
+| air | [air.Plain](#cws-air-Plain) |  |  |
+
+
+
+
+
+
 <a name="cws-ResponseSelectSubject"></a>
 
 ### ResponseSelectSubject
@@ -481,8 +912,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | base | [Response](#cws-Response) |  |  |
-| coordinates | [Coordinates](#cws-Coordinates) |  |  |
-| derived | [SubjectDerived](#cws-SubjectDerived) |  |  |
+| id | [SubjectId](#cws-SubjectId) |  |  |
+| subject | [subject.Any](#cws-subject-Any) |  |  |
 
 
 
@@ -491,18 +922,17 @@
  
 
 
-<a name="cws-SubjectQueryType"></a>
+<a name="cws-SubjectModifyType"></a>
 
-### SubjectQueryType
+### SubjectModifyType
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| SUBJECT_QUERY_TYPE_UNSPECIFIED | 0 |  |
-| SUBJECT_QUERY_TYPE_INSERT | 1 |  |
-| SUBJECT_QUERY_TYPE_UPDATE | 2 |  |
-| SUBJECT_QUERY_TYPE_DELETE | 3 |  |
-| SUBJECT_QUERY_TYPE_SELECT | 4 |  |
+| SUBJECT_MODIFY_TYPE_UNSPECIFIED | 0 |  |
+| SUBJECT_MODIFY_TYPE_INSERT | 1 |  |
+| SUBJECT_MODIFY_TYPE_UPDATE | 2 |  |
+| SUBJECT_MODIFY_TYPE_DELETE | 3 |  |
 
 
  
@@ -518,11 +948,14 @@
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | GetMapDimension | [Request](#cws-Request) | [ResponseDimension](#cws-ResponseDimension) |  |
-| CreateMap | [RequestDimension](#cws-RequestDimension) | [Response](#cws-Response) |  |
+| CreateMap | [RequestDimension](#cws-RequestDimension) | [Response](#cws-Response) | aka SetMapDimension |
 | GetCell | [RequestCell](#cws-RequestCell) | [ResponseCell](#cws-ResponseCell) |  |
-| GetMap | [Request](#cws-Request) | [ResponseCell](#cws-ResponseCell) stream |  |
-| GetSubject | [RequestQuerySubject](#cws-RequestQuerySubject) | [ResponseSelectSubject](#cws-ResponseSelectSubject) |  |
-| SetSubject | [RequestQuerySubject](#cws-RequestQuerySubject) | [Response](#cws-Response) |  |
+| GetMap | [Request](#cws-Request) | [ResponseMap](#cws-ResponseMap) |  |
+| GetMapCells | [Request](#cws-Request) | [ResponseCell](#cws-ResponseCell) stream |  |
+| GetSubject | [RequestSelectSubject](#cws-RequestSelectSubject) | [ResponseSelectSubject](#cws-ResponseSelectSubject) |  |
+| SetSubject | [RequestModifySubject](#cws-RequestModifySubject) | [Response](#cws-Response) |  |
+| GetAir | [RequestSelectAir](#cws-RequestSelectAir) | [ResponseSelectAir](#cws-ResponseSelectAir) |  |
+| InsertAir | [RequestInsertAir](#cws-RequestInsertAir) | [Response](#cws-Response) |  |
 
  
 
@@ -631,101 +1064,277 @@
 
 
 
-<a name="cwspb_service_subject_hub-proto"></a>
+<a name="cwspb_subject-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## cwspb/service/subject_hub.proto
+## cwspb/subject.proto
 
 
 
-<a name="cws-RequestSensorTemperature"></a>
+<a name="cws-subject-Any"></a>
 
-### RequestSensorTemperature
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [SubjectId](#cws-SubjectId) |  |  |
-| coordinates | [Coordinates](#cws-Coordinates) |  |  |
-
-
-
-
-
-
-<a name="cws-ResponseSensorTemperature"></a>
-
-### ResponseSensorTemperature
+### Any
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| base | [Response](#cws-Response) |  |  |
-| temp | [Temperature](#cws-Temperature) |  |  |
+| plain | [Plain](#cws-subject-Plain) |  |  |
+| temp_emitter | [TempEmitter](#cws-subject-TempEmitter) |  |  |
+| turnable_temp_emitter | [TurnableTempEmitter](#cws-subject-TurnableTempEmitter) |  |  |
+| light_emitter | [LightEmitter](#cws-subject-LightEmitter) |  |  |
+| turnable_light_emitter | [TurnableLightEmitter](#cws-subject-TurnableLightEmitter) |  |  |
+| network_device | [NetworkDevice](#cws-subject-NetworkDevice) |  |  |
+| infrared_camera | [InfraredCamera](#cws-subject-InfraredCamera) |  |  |
+| light_camera | [LightCamera](#cws-subject-LightCamera) |  |  |
+| turnable | [Turnable](#cws-subject-Turnable) |  |  |
+| sensor_air_temperature | [SensorAirTemperature](#cws-subject-SensorAirTemperature) |  |  |
+| sensor_illumination | [SensorIllumination](#cws-subject-SensorIllumination) |  |  |
 
 
 
 
 
- 
 
- 
+<a name="cws-subject-BaseCamera"></a>
 
- 
-
-
-<a name="cws-SubjectHubService"></a>
-
-### SubjectHubService
-Communicates with existing subjects to get/set their state
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| GetTemperature | [RequestSensorTemperature](#cws-RequestSensorTemperature) | [ResponseSensorTemperature](#cws-ResponseSensorTemperature) |  |
-
- 
-
-
-
-<a name="cwspb_subject_base-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## cwspb/subject/base.proto
-
-
-
-<a name="cws-Subject"></a>
-
-### Subject
+### BaseCamera
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| weight | [double](#double) |  |  |
-| heat_capacity | [double](#double) |  |  |
-| heat_transmission | [Percentage](#cws-Percentage) |  |  |
-| temperature | [Temperature](#cws-Temperature) |  |  |
-| light_transmission | [Percentage](#cws-Percentage) |  |  |
-| humidity_transmission | [Percentage](#cws-Percentage) |  |  |
-| id | [SubjectId](#cws-SubjectId) |  |  |
+| base | [Plain](#cws-subject-Plain) |  |  |
+| power | [double](#double) |  |  |
+| power_threshold | [double](#double) |  |  |
 
 
 
 
 
 
-<a name="cws-SubjectId"></a>
+<a name="cws-subject-Id"></a>
 
-### SubjectId
+### Id
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [int32](#int32) |  |  |
+| type | [Type](#cws-subject-Type) |  |  |
+| idx | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="cws-subject-InfraredCamera"></a>
+
+### InfraredCamera
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [BaseCamera](#cws-subject-BaseCamera) |  |  |
+
+
+
+
+
+
+<a name="cws-subject-LightCamera"></a>
+
+### LightCamera
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [BaseCamera](#cws-subject-BaseCamera) |  |  |
+| light_threshold | [double](#double) |  |  |
+
+
+
+
+
+
+<a name="cws-subject-LightEmitter"></a>
+
+### LightEmitter
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [TempEmitter](#cws-subject-TempEmitter) |  |  |
+| light_params | [LightSourceParams](#cws-subject-LightSourceParams) |  |  |
+
+
+
+
+
+
+<a name="cws-subject-LightSourceParams"></a>
+
+### LightSourceParams
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| raw_illumination | [cws.Illumination](#cws-Illumination) |  |  |
+
+
+
+
+
+
+<a name="cws-subject-NetworkDevice"></a>
+
+### NetworkDevice
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Plain](#cws-subject-Plain) |  |  |
+| transmit_packets | [cws.network.Packet](#cws-network-Packet) | repeated | out |
+| received_packets | [cws.network.Packet](#cws-network-Packet) | repeated | out |
+
+
+
+
+
+
+<a name="cws-subject-Plain"></a>
+
+### Plain
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [cws.Physical](#cws-Physical) |  |  |
+| id | [Id](#cws-subject-Id) |  |  |
+| surface_area | [double](#double) |  |  |
+| air_obstruction | [cws.Obstruction](#cws-Obstruction) |  |  |
+
+
+
+
+
+
+<a name="cws-subject-SensorAirTemperature"></a>
+
+### SensorAirTemperature
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Plain](#cws-subject-Plain) |  |  |
+| air_temperature | [cws.Temperature](#cws-Temperature) |  | out |
+
+
+
+
+
+
+<a name="cws-subject-SensorIllumination"></a>
+
+### SensorIllumination
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Plain](#cws-subject-Plain) |  |  |
+| cell_illumination | [cws.Illumination](#cws-Illumination) |  | out |
+
+
+
+
+
+
+<a name="cws-subject-TempEmitter"></a>
+
+### TempEmitter
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Plain](#cws-subject-Plain) |  |  |
+| temp_params | [TempSourceParams](#cws-subject-TempSourceParams) |  |  |
+
+
+
+
+
+
+<a name="cws-subject-TempSourceParams"></a>
+
+### TempSourceParams
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| heat_production | [double](#double) |  |  |
+
+
+
+
+
+
+<a name="cws-subject-Turnable"></a>
+
+### Turnable
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Plain](#cws-subject-Plain) |  |  |
+| off_light_obs | [cws.Obstruction](#cws-Obstruction) |  |  |
+| off_wireless_obs | [cws.Obstruction](#cws-Obstruction) |  |  |
+| off_air_obs | [cws.Obstruction](#cws-Obstruction) |  |  |
+
+
+
+
+
+
+<a name="cws-subject-TurnableLightEmitter"></a>
+
+### TurnableLightEmitter
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [LightEmitter](#cws-subject-LightEmitter) |  |  |
+| off_light_params | [LightSourceParams](#cws-subject-LightSourceParams) |  |  |
+| off_temp_params | [TempSourceParams](#cws-subject-TempSourceParams) |  |  |
+
+
+
+
+
+
+<a name="cws-subject-TurnableTempEmitter"></a>
+
+### TurnableTempEmitter
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [TempEmitter](#cws-subject-TempEmitter) |  |  |
+| turnable_status | [TurnableStatus](#cws-subject-TurnableStatus) |  |  |
+| off_temp_params | [TempSourceParams](#cws-subject-TempSourceParams) |  |  |
 
 
 
@@ -734,191 +1343,39 @@ Communicates with existing subjects to get/set their state
  
 
 
-<a name="cws-SubjectType"></a>
+<a name="cws-subject-TurnableStatus"></a>
 
-### SubjectType
+### TurnableStatus
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| SUBJECT_TYPE_UNSPECIFIED | 0 |  |
-| SUBJECT_TYPE_PLAIN | 1 |  |
-| SUBJECT_TYPE_INTERACTIVE | 2 |  |
-| SUBJECT_TYPE_SENSOR | 3 |  |
-
-
- 
-
- 
-
- 
+| TURNABLE_STATUS_UNSPECIFIED | 0 |  |
+| TURNABLE_STATUS_OFF | 1 |  |
+| TURNABLE_STATUS_ON | 2 |  |
 
 
 
-<a name="cwspb_subject_derived-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+<a name="cws-subject-Type"></a>
 
-## cwspb/subject/derived.proto
-
-
-
-<a name="cws-SubjectDerived"></a>
-
-### SubjectDerived
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| base | [Subject](#cws-Subject) |  |  |
-| interactive | [SubjectInteractive](#cws-SubjectInteractive) |  |  |
-| plain | [SubjectPlain](#cws-SubjectPlain) |  |  |
-| sensor | [SubjectSensorDerived](#cws-SubjectSensorDerived) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cwspb_subject_interactive-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## cwspb/subject/interactive.proto
-
-
-
-<a name="cws-SubjectInteractive"></a>
-
-### SubjectInteractive
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| base | [Subject](#cws-Subject) |  |  |
-| interaction_state_type | [InteractionStateType](#cws-InteractionStateType) |  |  |
-
-
-
-
-
- 
-
-
-<a name="cws-InteractionStateType"></a>
-
-### InteractionStateType
+### Type
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| INTERACTION_STATE_TYPE_UNSPECIFIED | 0 |  |
-| INTERACTION_STATE_TYPE_OPENED | 1 |  |
-| INTERACTION_STATE_TYPE_CLOSED | 2 |  |
+| TYPE_UNSPECIFIED | 0 |  |
+| TYPE_PLAIN | 1 |  |
+| TYPE_TEMP_EMITTER | 2 |  |
+| TYPE_TURNABLE_TEMP_EMITTER | 3 |  |
+| TYPE_LIGHT_EMITTER | 4 |  |
+| TYPE_TURNABLE_LIGHT_EMITTER | 5 |  |
+| TYPE_NETWORK_DEVICE | 6 |  |
+| TYPE_INFRARED_CAMERA | 7 |  |
+| TYPE_LIGHT_CAMERA | 8 |  |
+| TYPE_TURNABLE | 9 |  |
+| TYPE_AIR_TEMPERATURE_SENSOR | 10 |  |
+| TYPE_ILLUMINATION_SENSOR | 11 |  |
 
-
- 
-
- 
-
- 
-
-
-
-<a name="cwspb_subject_plain-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## cwspb/subject/plain.proto
-
-
-
-<a name="cws-SubjectPlain"></a>
-
-### SubjectPlain
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| base | [Subject](#cws-Subject) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cwspb_subject_sensor-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## cwspb/subject/sensor.proto
-
-
-
-<a name="cws-SensorTemperature"></a>
-
-### SensorTemperature
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| base | [SubjectSensor](#cws-SubjectSensor) |  |  |
-| temperature | [Temperature](#cws-Temperature) |  |  |
-
-
-
-
-
-
-<a name="cws-SubjectSensor"></a>
-
-### SubjectSensor
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| base | [Subject](#cws-Subject) |  |  |
-
-
-
-
-
-
-<a name="cws-SubjectSensorDerived"></a>
-
-### SubjectSensorDerived
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| base | [SubjectSensor](#cws-SubjectSensor) |  |  |
-| temperature | [SensorTemperature](#cws-SensorTemperature) |  |  |
-
-
-
-
-
- 
 
  
 
