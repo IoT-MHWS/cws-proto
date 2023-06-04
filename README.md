@@ -99,6 +99,7 @@
     - [Turnable](#cwspb-subject-Turnable)
     - [TurnableLightEmitter](#cwspb-subject-TurnableLightEmitter)
     - [TurnableTempEmitter](#cwspb-subject-TurnableTempEmitter)
+    - [WirelessNetworkDevice](#cwspb-subject-WirelessNetworkDevice)
   
     - [TurnableStatus](#cwspb-subject-TurnableStatus)
     - [Type](#cwspb-subject-Type)
@@ -139,8 +140,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | base | [cwspb.Physical](#cwspb-Physical) |  |  |
-| surface_area | [double](#double) |  |  |
-| air_obstruction | [cwspb.Obstruction](#cwspb-Obstruction) |  |  |
+| id | [Id](#cwspb-air-Id) |  |  |
+| heat_transfer_coef | [double](#double) |  |  |
 
 
 
@@ -291,7 +292,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| illumination | [Illumination](#cwspb-layer-Illumination) |  |  |
+| illumination | [cwspb.Illumination](#cwspb-Illumination) |  |  |
 
 
 
@@ -306,9 +307,9 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| light_obstruction | [Obstruction](#cwspb-layer-Obstruction) |  |  |
-| air_obstruction | [Obstruction](#cwspb-layer-Obstruction) |  |  |
-| wireless_obstruction | [Obstruction](#cwspb-layer-Obstruction) |  |  |
+| light_obstruction | [cwspb.Obstruction](#cwspb-Obstruction) |  |  |
+| air_obstruction | [cwspb.Obstruction](#cwspb-Obstruction) |  |  |
+| wireless_obstruction | [cwspb.Obstruction](#cwspb-Obstruction) |  |  |
 
 
 
@@ -1090,6 +1091,7 @@
 | turnable | [Turnable](#cwspb-subject-Turnable) |  |  |
 | sensor_air_temperature | [SensorAirTemperature](#cwspb-subject-SensorAirTemperature) |  |  |
 | sensor_illumination | [SensorIllumination](#cwspb-subject-SensorIllumination) |  |  |
+| wireless_network_device | [WirelessNetworkDevice](#cwspb-subject-WirelessNetworkDevice) |  |  |
 
 
 
@@ -1200,8 +1202,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | base | [Plain](#cwspb-subject-Plain) |  |  |
-| transmit_packets | [cwspb.network.Packet](#cwspb-network-Packet) | repeated | out |
-| received_packets | [cwspb.network.Packet](#cwspb-network-Packet) | repeated | out |
+| transmit_packets | [cwspb.network.Packet](#cwspb-network-Packet) | repeated |  |
+| received_packets | [cwspb.network.Packet](#cwspb-network-Packet) | repeated |  |
 
 
 
@@ -1235,7 +1237,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | base | [Plain](#cwspb-subject-Plain) |  |  |
-| air_temperature | [cwspb.Temperature](#cwspb-Temperature) |  | out |
+| air_temperature | [cwspb.Temperature](#cwspb-Temperature) |  |  |
 
 
 
@@ -1251,7 +1253,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | base | [Plain](#cwspb-subject-Plain) |  |  |
-| cell_illumination | [cwspb.Illumination](#cwspb-Illumination) |  | out |
+| cell_illumination | [cwspb.Illumination](#cwspb-Illumination) |  |  |
 
 
 
@@ -1298,6 +1300,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | base | [Plain](#cwspb-subject-Plain) |  |  |
+| turnable_status | [TurnableStatus](#cwspb-subject-TurnableStatus) |  |  |
 | off_light_obs | [cwspb.Obstruction](#cwspb-Obstruction) |  |  |
 | off_wireless_obs | [cwspb.Obstruction](#cwspb-Obstruction) |  |  |
 | off_air_obs | [cwspb.Obstruction](#cwspb-Obstruction) |  |  |
@@ -1316,6 +1319,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | base | [LightEmitter](#cwspb-subject-LightEmitter) |  |  |
+| turnable_status | [TurnableStatus](#cwspb-subject-TurnableStatus) |  |  |
 | off_light_params | [LightSourceParams](#cwspb-subject-LightSourceParams) |  |  |
 | off_temp_params | [TempSourceParams](#cwspb-subject-TempSourceParams) |  |  |
 
@@ -1335,6 +1339,23 @@
 | base | [TempEmitter](#cwspb-subject-TempEmitter) |  |  |
 | turnable_status | [TurnableStatus](#cwspb-subject-TurnableStatus) |  |  |
 | off_temp_params | [TempSourceParams](#cwspb-subject-TempSourceParams) |  |  |
+
+
+
+
+
+
+<a name="cwspb-subject-WirelessNetworkDevice"></a>
+
+### WirelessNetworkDevice
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [NetworkDevice](#cwspb-subject-NetworkDevice) |  |  |
+| transmit_power | [double](#double) |  |  |
+| receive_threshold | [double](#double) |  |  |
 
 
 
@@ -1375,6 +1396,7 @@
 | TYPE_TURNABLE | 9 |  |
 | TYPE_AIR_TEMPERATURE_SENSOR | 10 |  |
 | TYPE_ILLUMINATION_SENSOR | 11 |  |
+| TYPE_WIRELESS_NETWORK_DEVICE | 12 |  |
 
 
  
