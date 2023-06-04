@@ -17,26 +17,31 @@ message ResponseDimension {
   Dimension dimension = 10;
 }
 
-// message RequestCell {
-//   Request base = 1;
-//   Coordinates coordinates = 10;
-// };
+message RequestCell {
+  Request base = 1;
+  Coordinates coordinates = 10;
+};
 
-// message ResponseCell {
-//   Response base = 1;
-//   Cell cell = 10;
-// }
-
-enum SubjectQueryType {
-  SUBJECT_QUERY_TYPE_UNSPECIFIED = 0;
-  SUBJECT_QUERY_TYPE_INSERT = 1;
-  SUBJECT_QUERY_TYPE_UPDATE = 2;
-  SUBJECT_QUERY_TYPE_DELETE = 3;
+message ResponseCell {
+  Response base = 1;
+  Cell cell = 10;
 }
 
-message RequestQuerySubject {
+message ResponseMap {
+  Response base = 1;
+  Map map = 10;
+};
+
+enum SubjectModifyType {
+  SUBJECT_MODIFY_TYPE_UNSPECIFIED = 0;
+  SUBJECT_MODIFY_TYPE_INSERT = 1;
+  SUBJECT_MODIFY_TYPE_UPDATE = 2;
+  SUBJECT_MODIFY_TYPE_DELETE = 3;
+}
+
+message RequestModifySubject {
   Request base = 1;
-  SubjectQueryType query_type = 10;
+  SubjectModifyType modify_type = 10;
   Coordinates coordinates = 11;
   subject.Any subject = 12;
 }
@@ -50,7 +55,7 @@ message RequestSelectSubject {
 message ResponseSelectSubject {
   Response base = 1;
   Coordinates coordinates = 10;
-  subject.Any derived = 11;
+  subject.Any subject = 11;
 }
 
 
@@ -58,9 +63,10 @@ service MapService {
   rpc GetMapDimension(Request) returns (ResponseDimension);
   rpc CreateMap(RequestDimension) returns (Response); // aka SetMapDimension
 
-  // rpc GetCell(RequestCell) returns (ResponseCell);
-  // rpc GetMap(Request) returns (stream ResponseCell);
+  rpc GetCell(RequestCell) returns (ResponseCell);
+  rpc GetMap(Request) returns (ResponseMap);
+  rpc GetMapCells(Request) returns (stream ResponseCell);
 
-  rpc GetSubject(RequestQuerySubject) returns (ResponseSelectSubject);
-  rpc SetSubject(RequestQuerySubject) returns (Response);
+  rpc GetSubject(RequestSelectSubject) returns (ResponseSelectSubject);
+  rpc SetSubject(RequestModifySubject) returns (Response);
 };
