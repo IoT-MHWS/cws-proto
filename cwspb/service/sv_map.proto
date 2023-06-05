@@ -48,15 +48,14 @@ message RequestSelectSubject {
 
 message ResponseSelectSubject {
   Response base = 1;
-  SubjectId id = 10;
   subject.Any subject = 11;
 }
 
 message RequestModifySubject {
   Request base = 1;
   SubjectModifyType modify_type = 10;
-  SubjectId id = 11;
-  subject.Any subject = 12;
+  SubjectId id = 11; // before
+  subject.Any subject = 12; // after
 }
 
 message RequestSelectAir {
@@ -66,13 +65,12 @@ message RequestSelectAir {
 
 message ResponseSelectAir {
   Response base = 1;
-  AirId id = 10;
-  air.Plain air = 11;
+  air.Plain air = 10;
 };
 
 message RequestInsertAir {
   Request base = 1;
-  AirId id = 10;
+  Coordinates coordinates = 10;
   air.Plain air = 11;
 };
 

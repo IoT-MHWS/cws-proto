@@ -37,6 +37,12 @@ message ResponseReceivedPackets {
   repeated network.Packet packets = 10;
 };
 
+message RequestTurnDevice {
+  Request base = 1;
+  SubjectId id = 10;
+  int32 turnable_status = 11;
+};
+
 service DeviceService {
   rpc GetAirTemperature(RequestDevice) returns (ResponseSensorAirTemperature);
   rpc GetIllumination(RequestDevice) returns (ResponseSensorIllumination);
@@ -45,4 +51,6 @@ service DeviceService {
 
   rpc TransmitPacket(RequestTransmitPackets) returns (Response);
   rpc ReceivePackets(RequestDevice) returns (ResponseReceivedPackets);
+
+  rpc TurnDevice(RequestTurnDevice) returns (Response);
 };
