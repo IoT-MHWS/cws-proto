@@ -7,8 +7,6 @@
     - [Id](#cwspb-air-Id)
     - [Plain](#cwspb-air-Plain)
   
-    - [Type](#cwspb-air-Type)
-  
 - [cwspb/common.proto](#cwspb_common-proto)
     - [Coordinates](#cwspb-Coordinates)
     - [Dimension](#cwspb-Dimension)
@@ -77,9 +75,6 @@
     - [ResponseSimulationState](#cwspb-ResponseSimulationState)
     - [SimulationState](#cwspb-SimulationState)
   
-    - [SimulationStatus](#cwspb-SimulationStatus)
-    - [SimulationType](#cwspb-SimulationType)
-  
     - [SimulationService](#cwspb-SimulationService)
   
 - [cwspb/subject.proto](#cwspb_subject-proto)
@@ -90,7 +85,6 @@
     - [LightCamera](#cwspb-subject-LightCamera)
     - [LightEmitter](#cwspb-subject-LightEmitter)
     - [LightSourceParams](#cwspb-subject-LightSourceParams)
-    - [NetworkDevice](#cwspb-subject-NetworkDevice)
     - [Plain](#cwspb-subject-Plain)
     - [SensorAirTemperature](#cwspb-subject-SensorAirTemperature)
     - [SensorIllumination](#cwspb-subject-SensorIllumination)
@@ -100,9 +94,6 @@
     - [TurnableLightEmitter](#cwspb-subject-TurnableLightEmitter)
     - [TurnableTempEmitter](#cwspb-subject-TurnableTempEmitter)
     - [WirelessNetworkDevice](#cwspb-subject-WirelessNetworkDevice)
-  
-    - [TurnableStatus](#cwspb-subject-TurnableStatus)
-    - [Type](#cwspb-subject-Type)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -123,7 +114,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [Type](#cwspb-air-Type) |  |  |
+| type | [int32](#int32) |  |  |
 | idx | [int32](#int32) |  |  |
 
 
@@ -148,18 +139,6 @@
 
 
  
-
-
-<a name="cwspb-air-Type"></a>
-
-### Type
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| TYPE_UNSPECIFIED | 0 |  |
-| TYPE_PLAIN | 1 |  |
-
 
  
 
@@ -1008,8 +987,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| status | [SimulationStatus](#cwspb-SimulationStatus) | optional |  |
-| type | [SimulationType](#cwspb-SimulationType) | optional |  |
+| status | [int32](#int32) | optional |  |
+| type | [int32](#int32) | optional |  |
 | task_frequency | [double](#double) | optional |  |
 | current_tick | [int32](#int32) | optional |  |
 | last_tick | [int32](#int32) | optional |  |
@@ -1019,32 +998,6 @@
 
 
  
-
-
-<a name="cwspb-SimulationStatus"></a>
-
-### SimulationStatus
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| SIMULATION_STATUS_UNSPECIFIED | 0 |  |
-| SIMULATION_STATUS_RUNNING | 1 |  |
-| SIMULATION_STATUS_STOPPED | 2 |  |
-
-
-
-<a name="cwspb-SimulationType"></a>
-
-### SimulationType
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| SIMULATION_TYPE_UNSPECIFIED | 0 |  |
-| SIMULATION_TYPE_LIMITED | 1 |  |
-| SIMULATION_TYPE_INFINITE | 2 |  |
-
 
  
 
@@ -1085,13 +1038,12 @@
 | turnable_temp_emitter | [TurnableTempEmitter](#cwspb-subject-TurnableTempEmitter) |  |  |
 | light_emitter | [LightEmitter](#cwspb-subject-LightEmitter) |  |  |
 | turnable_light_emitter | [TurnableLightEmitter](#cwspb-subject-TurnableLightEmitter) |  |  |
-| network_device | [NetworkDevice](#cwspb-subject-NetworkDevice) |  |  |
+| wireless_network_device | [WirelessNetworkDevice](#cwspb-subject-WirelessNetworkDevice) |  |  |
 | infrared_camera | [InfraredCamera](#cwspb-subject-InfraredCamera) |  |  |
 | light_camera | [LightCamera](#cwspb-subject-LightCamera) |  |  |
 | turnable | [Turnable](#cwspb-subject-Turnable) |  |  |
 | sensor_air_temperature | [SensorAirTemperature](#cwspb-subject-SensorAirTemperature) |  |  |
 | sensor_illumination | [SensorIllumination](#cwspb-subject-SensorIllumination) |  |  |
-| wireless_network_device | [WirelessNetworkDevice](#cwspb-subject-WirelessNetworkDevice) |  |  |
 
 
 
@@ -1123,7 +1075,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [Type](#cwspb-subject-Type) |  |  |
+| type | [int32](#int32) |  |  |
 | idx | [int32](#int32) |  |  |
 
 
@@ -1170,7 +1122,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| base | [TempEmitter](#cwspb-subject-TempEmitter) |  |  |
+| base | [Plain](#cwspb-subject-Plain) |  |  |
+| temp_params | [TempSourceParams](#cwspb-subject-TempSourceParams) |  |  |
 | light_params | [LightSourceParams](#cwspb-subject-LightSourceParams) |  |  |
 
 
@@ -1187,23 +1140,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | raw_illumination | [cwspb.Illumination](#cwspb-Illumination) |  |  |
-
-
-
-
-
-
-<a name="cwspb-subject-NetworkDevice"></a>
-
-### NetworkDevice
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| base | [Plain](#cwspb-subject-Plain) |  |  |
-| transmit_packets | [cwspb.network.Packet](#cwspb-network-Packet) | repeated |  |
-| received_packets | [cwspb.network.Packet](#cwspb-network-Packet) | repeated |  |
 
 
 
@@ -1300,7 +1236,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | base | [Plain](#cwspb-subject-Plain) |  |  |
-| turnable_status | [TurnableStatus](#cwspb-subject-TurnableStatus) |  |  |
+| turnable_status | [int32](#int32) |  |  |
 | off_light_obs | [cwspb.Obstruction](#cwspb-Obstruction) |  |  |
 | off_wireless_obs | [cwspb.Obstruction](#cwspb-Obstruction) |  |  |
 | off_air_obs | [cwspb.Obstruction](#cwspb-Obstruction) |  |  |
@@ -1319,7 +1255,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | base | [LightEmitter](#cwspb-subject-LightEmitter) |  |  |
-| turnable_status | [TurnableStatus](#cwspb-subject-TurnableStatus) |  |  |
+| turnable_status | [int32](#int32) |  |  |
 | off_light_params | [LightSourceParams](#cwspb-subject-LightSourceParams) |  |  |
 | off_temp_params | [TempSourceParams](#cwspb-subject-TempSourceParams) |  |  |
 
@@ -1337,7 +1273,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | base | [TempEmitter](#cwspb-subject-TempEmitter) |  |  |
-| turnable_status | [TurnableStatus](#cwspb-subject-TurnableStatus) |  |  |
+| turnable_status | [int32](#int32) |  |  |
 | off_temp_params | [TempSourceParams](#cwspb-subject-TempSourceParams) |  |  |
 
 
@@ -1353,7 +1289,9 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| base | [NetworkDevice](#cwspb-subject-NetworkDevice) |  |  |
+| base | [Plain](#cwspb-subject-Plain) |  |  |
+| transmit_packets | [cwspb.network.Packet](#cwspb-network-Packet) | repeated |  |
+| received_packets | [cwspb.network.Packet](#cwspb-network-Packet) | repeated |  |
 | transmit_power | [double](#double) |  |  |
 | receive_threshold | [double](#double) |  |  |
 
@@ -1362,42 +1300,6 @@
 
 
  
-
-
-<a name="cwspb-subject-TurnableStatus"></a>
-
-### TurnableStatus
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| TURNABLE_STATUS_UNSPECIFIED | 0 |  |
-| TURNABLE_STATUS_OFF | 1 |  |
-| TURNABLE_STATUS_ON | 2 |  |
-
-
-
-<a name="cwspb-subject-Type"></a>
-
-### Type
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| TYPE_UNSPECIFIED | 0 |  |
-| TYPE_PLAIN | 1 |  |
-| TYPE_TEMP_EMITTER | 2 |  |
-| TYPE_TURNABLE_TEMP_EMITTER | 3 |  |
-| TYPE_LIGHT_EMITTER | 4 |  |
-| TYPE_TURNABLE_LIGHT_EMITTER | 5 |  |
-| TYPE_NETWORK_DEVICE | 6 |  |
-| TYPE_INFRARED_CAMERA | 7 |  |
-| TYPE_LIGHT_CAMERA | 8 |  |
-| TYPE_TURNABLE | 9 |  |
-| TYPE_AIR_TEMPERATURE_SENSOR | 10 |  |
-| TYPE_ILLUMINATION_SENSOR | 11 |  |
-| TYPE_WIRELESS_NETWORK_DEVICE | 12 |  |
-
 
  
 
