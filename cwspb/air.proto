@@ -5,13 +5,8 @@ package cwspb.air;
 import "cwspb/common.proto";
 import "cwspb/physical.proto";
 
-enum Type {
-  TYPE_UNSPECIFIED = 0;
-  TYPE_PLAIN = 1;
-};
-
 message Id {
-  Type type = 1;
+  int32 type = 1;
   int32 idx = 2;
 };
 

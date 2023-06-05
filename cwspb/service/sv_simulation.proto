@@ -4,27 +4,13 @@ package cwspb;
 
 import "cwspb/service/general.proto";
 
-enum SimulationStatus {
-  SIMULATION_STATUS_UNSPECIFIED = 0;
-  SIMULATION_STATUS_RUNNING = 1;
-  SIMULATION_STATUS_STOPPED = 2;
-};
-
-enum SimulationType {
-  SIMULATION_TYPE_UNSPECIFIED = 0;
-  SIMULATION_TYPE_LIMITED = 1;
-  SIMULATION_TYPE_INFINITE = 2;
-}
-
-
 message SimulationState {
-  optional SimulationStatus status = 1;
-  optional SimulationType type = 2;
+  optional int32 status = 1;
+  optional int32 type = 2;
   optional double task_frequency = 3;
   optional int32 current_tick = 4;
   optional int32 last_tick = 5;
 };
-
 
 message RequestSimulationState {
   SimulationState state = 2;
@@ -34,7 +20,6 @@ message ResponseSimulationState {
   Response base = 1;
   SimulationState state = 2;
 };
-
 
 service SimulationService {
   rpc GetSimulationState(Request) returns (ResponseSimulationState);

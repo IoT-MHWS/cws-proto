@@ -6,28 +6,6 @@ import "cwspb/common.proto";
 import "cwspb/network.proto";
 import "cwspb/physical.proto";
 
-enum Type {
-  TYPE_UNSPECIFIED = 0;
-  TYPE_PLAIN = 1;
-  TYPE_TEMP_EMITTER = 2;
-  TYPE_TURNABLE_TEMP_EMITTER = 3;
-  TYPE_LIGHT_EMITTER = 4;
-  TYPE_TURNABLE_LIGHT_EMITTER = 5;
-  TYPE_NETWORK_DEVICE = 6;
-  TYPE_INFRARED_CAMERA = 7;
-  TYPE_LIGHT_CAMERA = 8;
-  TYPE_TURNABLE = 9;
-  TYPE_AIR_TEMPERATURE_SENSOR = 10;
-  TYPE_ILLUMINATION_SENSOR = 11;
-  TYPE_WIRELESS_NETWORK_DEVICE = 12;
-}
-
-enum TurnableStatus {
-  TURNABLE_STATUS_UNSPECIFIED = 0;
-  TURNABLE_STATUS_OFF = 1;
-  TURNABLE_STATUS_ON = 2;
-};
-
 message TempSourceParams {
   double heat_production = 1;
 };
@@ -37,7 +15,7 @@ message LightSourceParams {
 };
 
 message Id {
-  Type type = 1;
+  int32 type = 1;
   int32 idx = 2;
 };
 
@@ -55,32 +33,29 @@ message TempEmitter {
 
 message TurnableTempEmitter {
   TempEmitter base = 1;
-  TurnableStatus turnable_status = 10;
+  int32 turnable_status = 10;
   TempSourceParams off_temp_params = 11;
 };
 
 message LightEmitter {
-  TempEmitter base = 1;
-  LightSourceParams light_params = 10;
+  Plain base = 1;
+  TempSourceParams temp_params = 10;
+  LightSourceParams light_params = 11;
 };
 
 message TurnableLightEmitter {
   LightEmitter base = 1;  
-  TurnableStatus turnable_status = 10;
+  int32 turnable_status = 10;
   LightSourceParams off_light_params = 11;
   TempSourceParams off_temp_params = 12;
 };
 
-message NetworkDevice {
+message WirelessNetworkDevice {
   Plain base = 1;
   repeated cwspb.network.Packet transmit_packets = 10;
   repeated cwspb.network.Packet received_packets = 11;
-};
-
-message WirelessNetworkDevice {
-  NetworkDevice base = 1;
-  double transmit_power = 10;
-  double receive_threshold = 11;
+  double transmit_power = 12;
+  double receive_threshold = 13;
 };
 
 message BaseCamera {
@@ -100,7 +75,7 @@ message LightCamera {
 
 message Turnable {
   Plain base = 1;
-  TurnableStatus turnable_status = 10;
+  int32 turnable_status = 10;
   Obstruction off_light_obs = 11;
   Obstruction off_wireless_obs = 12;
   Obstruction off_air_obs = 13;
@@ -123,12 +98,11 @@ message Any {
     TurnableTempEmitter turnable_temp_emitter = 3;
     LightEmitter light_emitter = 4;
     TurnableLightEmitter turnable_light_emitter = 5;
-    NetworkDevice network_device = 6;
+    WirelessNetworkDevice wireless_network_device = 6;
     InfraredCamera infrared_camera = 7;
     LightCamera light_camera = 8;
     Turnable turnable = 9;
     SensorAirTemperature sensor_air_temperature = 10;
     SensorIllumination sensor_illumination = 11;
-    WirelessNetworkDevice wireless_network_device = 12;
   };
 };
