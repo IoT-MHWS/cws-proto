@@ -46,6 +46,7 @@
 - [cwspb/service/sv_device.proto](#cwspb_service_sv_device-proto)
     - [RequestDevice](#cwspb-RequestDevice)
     - [RequestTransmitPackets](#cwspb-RequestTransmitPackets)
+    - [RequestTurnDevice](#cwspb-RequestTurnDevice)
     - [ResponseCameraInfo](#cwspb-ResponseCameraInfo)
     - [ResponseReceivedPackets](#cwspb-ResponseReceivedPackets)
     - [ResponseSensorAirTemperature](#cwspb-ResponseSensorAirTemperature)
@@ -618,7 +619,25 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | base | [RequestDevice](#cwspb-RequestDevice) |  |  |
+| id | [SubjectId](#cwspb-SubjectId) |  |  |
 | packets | [network.Packet](#cwspb-network-Packet) | repeated |  |
+
+
+
+
+
+
+<a name="cwspb-RequestTurnDevice"></a>
+
+### RequestTurnDevice
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base | [Request](#cwspb-Request) |  |  |
+| id | [SubjectId](#cwspb-SubjectId) |  |  |
+| turnable_status | [int32](#int32) |  |  |
 
 
 
@@ -707,6 +726,7 @@
 | GetCameraInfo | [RequestDevice](#cwspb-RequestDevice) | [ResponseCameraInfo](#cwspb-ResponseCameraInfo) |  |
 | TransmitPacket | [RequestTransmitPackets](#cwspb-RequestTransmitPackets) | [Response](#cwspb-Response) |  |
 | ReceivePackets | [RequestDevice](#cwspb-RequestDevice) | [ResponseReceivedPackets](#cwspb-ResponseReceivedPackets) |  |
+| TurnDevice | [RequestTurnDevice](#cwspb-RequestTurnDevice) | [Response](#cwspb-Response) |  |
 
  
 
@@ -760,7 +780,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | base | [Request](#cwspb-Request) |  |  |
-| id | [AirId](#cwspb-AirId) |  |  |
+| coordinates | [Coordinates](#cwspb-Coordinates) |  |  |
 | air | [air.Plain](#cwspb-air-Plain) |  |  |
 
 
@@ -778,8 +798,8 @@
 | ----- | ---- | ----- | ----------- |
 | base | [Request](#cwspb-Request) |  |  |
 | modify_type | [SubjectModifyType](#cwspb-SubjectModifyType) |  |  |
-| id | [SubjectId](#cwspb-SubjectId) |  |  |
-| subject | [subject.Any](#cwspb-subject-Any) |  |  |
+| id | [SubjectId](#cwspb-SubjectId) |  | before |
+| subject | [subject.Any](#cwspb-subject-Any) |  | after |
 
 
 
@@ -875,7 +895,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | base | [Response](#cwspb-Response) |  |  |
-| id | [AirId](#cwspb-AirId) |  |  |
 | air | [air.Plain](#cwspb-air-Plain) |  |  |
 
 
@@ -892,7 +911,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | base | [Response](#cwspb-Response) |  |  |
-| id | [SubjectId](#cwspb-SubjectId) |  |  |
 | subject | [subject.Any](#cwspb-subject-Any) |  |  |
 
 

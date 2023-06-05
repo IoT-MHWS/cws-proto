@@ -29,7 +29,8 @@ message ResponseCameraInfo {
 
 message RequestTransmitPackets {
   RequestDevice base = 1;
-  repeated network.Packet packets = 10;
+  SubjectId id = 10;
+  repeated network.Packet packets = 11;
 };
 
 message ResponseReceivedPackets {
